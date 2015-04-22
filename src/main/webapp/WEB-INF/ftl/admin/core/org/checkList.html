@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<script type="text/javascript">
+$(function() {
+	var status = ${status!};
+	if(status != null){
+		document.getElementById("status").value=status;
+	}
+})
+</script>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 组织认证 - 列表</div>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+组织ID：<input  type="text" name="orgId" size="8" value="${orgId!}"/>&nbsp;
+组织名称：<input  type="text" name="orgName" value="${orgName!}"/>&nbsp;
+组织机构代码：<input type="text" name="orgCode" value="${orgCode!}"/>
+email：<input type="text" name="email" value="${email!}"/>&nbsp;
+联系电话：<input type="text" name="telephone"value="${telephone!}"/>&nbsp;
+状态:<select name="status" id="status">
+        <option value="">[请选择]</option>
+		<option value="0">正常</option>
+		<option value="1">禁用</option>
+	</select>
+<input type="submit" value="搜索" />
+</form>
+
+<@p.grid
+  cols=[{"label":"ID","name":"row.orgId"},
+        {"label":"组织名称","name":"'<a title=\\''+(('<img src='+row.orgPhoto+' height=300>')!'未提交组织机构代码证扫描件')+'\\'>'+row.orgName+'</a>'","escape":false},
+        {"label":"组织类别","name":"(row.orgType?string((row.orgType=1)?string('国有',(row.orgType=2)?string('集体','私有'))))!"},
+        {"label":"所在行业","name":"(row.industry.name)!"},
+        {"label":"所在地区","name":"(row.provArea.name)!"},
+        {"label":"组织机构代码","name":"(row.orgCode)!"},
+        {"label":"Email","name":"row.email"},
+        {"label":"联系电话","name":"row.telephone"},
+        {"label":"企业负责人","name":"row.linkman"},
+        {"label":"用户数量","name":"row.userNumber"},
+        {"label":"创建时间","name":"(row.createTime?string('yyyy-MM-dd'))!"},
+        {"label":"组织状态","name":"(row.status=1)?string('<span style=\"color:red;\">禁用</span>','<span style=\"color:green;\">正常</span>')", "escape":false}
+       ]
+  keyId="orgId" keyId2="orgId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/org/detail","name":"<img src='"+base+"/images/admin/show.gif'>"},
+                 {"action":"/admin/core/org/ajax/checkSuccess","type":"ajax","name":"<img src='"+base+"/images/admin/passcheck.gif'>","confirm":"您确定通过所选组织的认证申请吗？"},
+                 {"action":"/admin/core/org/ajax/checkFail","type":"ajax","name":"<img src='"+base+"/images/admin/cancel.gif'>","confirm":"您确定拒绝所选组织的认证申请吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/org/ajax/checkSuccess","type":"ajax","name":"通过认证","confirm":"您确定停用所选的组织吗？"},
+  				{"action":"/admin/core/org/ajax/checkFail","type":"ajax","name":"拒绝认证","confirm":"您确定启用所选的组织吗？"}
+               ]
+  keepParams=[
+			  {"name":"returnPage","value":"pageNo"},
+			  {"name":"orgName","encode":true},
+			  {"name":"orgCode","encode":false},
+			  {"name":"email","encode":false},
+			  {"name":"telephone","encode":false},
+			  {"name":"status","encode":false}
+  			 ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

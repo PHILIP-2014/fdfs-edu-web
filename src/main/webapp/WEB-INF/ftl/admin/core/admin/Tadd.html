@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 基础设置 - 基础设置 - 管理员管理 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Tlist.jhtml';"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+<@pj.form id="submitForm" onsubmit="PostCheckForm('Tsave.htm','submitForm');return false;" action="update">
+
+<td class="pn-flabel pn-flabel-h">输入组织名称：</td>
+<td class="pn-fcontent">
+<input type="text" id="orgName" value="" name="orgName" size="40"/>
+<input type="hidden" id="orgId" name="orgId" value="" />
+<button type="button" onclick="SearchOrg()">查询组织</button></td>
+
+<tr><td class="pn-flabel pn-flabel-h">输入管理员姓名：</td>
+<td class="pn-fcontent">
+<input type="text" id="realName" value="" name="realName" size="40"/>
+<input type="hidden" id="userId" name="userId" value="" />
+<button type="button" onclick="SearchUser()">提交</button></td></tr>
+
+<@pj.td label="角色">
+<label for="roleIds" class="error lerror">请选择角色</label>
+<@pj.checkboxlist name="roleIds" list=roleList listKey="roleId" listValue="name" required="true" class="required"/>
+</@pj.td><@pj.tr/>
+
+<@pj.td label="额外的功能">
+<label for="functionIds" class="error lerror">请选择功能</label>
+<#if funcRoot??>
+<@pj.tree root=funcRoot showDeep=2 isUrl=false isCheckBox=true checkBoxName="functionIds" childName="children" vld="{required:true}"/>
+</#if>
+</@pj.td><@pj.tr/>
+
+<@pj.td><@pj.submit value="保存" onclick="PostCheckForm('Tsave.htm','submitForm');return false;"/> &nbsp; <@pj.reset value="重置" /></@pj.td>
+</@pj.form>
+</div>
+</body>
+<script type="text/javascript">
+function SearchOrg(){
+	var orgNameLike = document.getElementById("orgName").value;
+	var url = '${base}/admin/core/org/searchOrg.htm';
+	showMsgBox('搜索结果列表',url,{orgNameLike:orgNameLike},400);
+}
+function SearchUser(){
+	var userNameLike = document.getElementById("realName").value;
+	var url = '${base}/admin/core/user/searchUser.htm';
+	var orgId = document.getElementById("orgId").value;
+	showMsgBox('搜索结果列表',url,{userNameLike:userNameLike,orgId:orgId},400);
+}
+</script>
+</html>

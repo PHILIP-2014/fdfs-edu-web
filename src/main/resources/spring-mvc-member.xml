@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+	xmlns:context="http://www.springframework.org/schema/context"  
+	xmlns:mvc="http://www.springframework.org/schema/mvc"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd	
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="cacheSeconds" value="-1"/>
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/languages/messages</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+	<context:component-scan base-package="com.daoman.parox.*.controller,com.daoman.parox.core.comet.message" />
+
+	<!-- 注解支持 -->
+	<!--  
+	<mvc:annotation-driven />
+	-->  
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/" cache-period="31556926"/>  
+    
+    <!--
+    <mvc:interceptors>
+		<bean class="com.daoman.parox.common.web.FireWallInterceptor" />		
+	</mvc:interceptors>
+	-->
+    
+	<!-- 避免ID执行AJAX时，返回JSON出现下载文件 -->
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<!-- <value>text/html;charset=UTF-8</value> -->
+				<value>application/json; charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="com.daoman.parox.common.web.springmvc.BindingInitializer"/>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" /> <!-- json转换器 -->
+			</list>
+		</property>
+	</bean>	
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="memberContextInterceptor"/>
+				<!-- <ref bean="frontLocaleInterceptor"/> -->
+			</list>
+		</property>
+	</bean>
+	<bean id="memberContextInterceptor" class="com.daoman.parox.core.web.MemberContextInterceptor">
+		<property name="auth" value="true"/>
+		<property name="loginUrl" value="/login/"/>
+		<property name="returnUrl" value="/member/dashboard.htm"/>
+		<property name="excludeUrls">
+			<list>
+				<value>/login/</value>
+				<value>/login/*</value>
+				<value>/user/profile.htm</value>
+				<value>/register</value>
+	            <value>/register/*</value>
+				<value>/s/*</value>
+				<value>/order/product/*</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="frontLocaleInterceptor" class="com.daoman.parox.core.web.FrontLocaleInterceptor"/>
+		
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="clientlanguage"/>
+		<property name="cookieMaxAge" value="-1"/>
+	</bean>
+	
+	
+	<!-- 配置freeMarker视图解析器 -->
+	<bean id="freemarkerViewResolver" class="com.daoman.parox.common.web.springmvc.RichFreeMarkerViewResolver">
+		<!-- <property name="prefix" value="/jeecms_sys/"/> -->
+		<property name="suffix" value=".html"/>
+		<property name="contentType" value="text/html; charset=UTF-8"/>
+		<!-- 允许访问请求属性，默认为false -->
+		<property name="exposeRequestAttributes" value="false"/>
+		<!-- 允许访问会话属性，默认为false -->
+		<property name="exposeSessionAttributes" value="false"/>
+		<property name="exposeSpringMacroHelpers" value="true"/>
+	</bean>
+	
+	<!-- 设置freeMarker的配置文件路径 -->
+	<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:freemarker.properties"/>
+    </bean>
+	
+	<!-- 配置freeMarker的模板路径 -->  
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+    	<property name="freemarkerSettings" ref="freemarkerConfiguration"/>  
+        <property name="templateLoaderPath">  
+            <value>/WEB-INF/ftl/</value> 
+        </property>
+        <property name="freemarkerVariables">  
+            <map>  
+                <entry key="xml_escape" value-ref="fmXmlEscape" />
+                <entry key="process_time" value-ref="process_time" />
+                <entry key="server_info" value-ref="server_info" />
+                <entry key="option_list" value-ref="option_list" />
+                <entry key="org_space_list" value-ref="org_space_list" />
+                <entry key="recent_doc_list" value-ref="recent_doc_list" />
+                <entry key="join_org_list" value-ref="join_org_list" />
+                <entry key="org_right" value-ref="org_right"></entry>
+                <entry key="colla_org_list" value-ref="colla_org_list" />
+                <entry key="colla_list" value-ref="colla_list" />
+                <entry key="colla_info" value-ref="colla_info"></entry>
+                <entry key="space_summary_list" value-ref="space_summary_list" />
+                <entry key="task_list" value-ref="task_list" />
+                <entry key="space_list" value-ref="space_list" />
+                <entry key="tag_list" value-ref="tag_list" />
+            </map>
+        </property>
+        <property name="defaultEncoding">
+            <value>utf-8</value>
+        </property>
+        <!--
+        <property name="freemarkerSettings">  
+            <props>
+                <prop key="template_update_delay">3600</prop>  
+            </props>  
+        </property>
+        -->
+    </bean>  
+       
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+    
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<!-- 	<value>32505856</value> --> <!-- 上传文件大小限制为31M，31*1024*1024 -->
+			<value>209715200</value> <!-- 上传文件大小限制为200M，200*1024*1024 -->
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+	</bean>
+	
+	<bean id="option_list" class="com.daoman.parox.core.controller.directive.OptionListDirective"/>
+	<bean id="org_space_list" class="com.daoman.parox.core.controller.directive.OrgSpaceListDirective"/>
+	<bean id="recent_doc_list" class="com.daoman.parox.core.controller.directive.RecentDocListDirective"/>
+	<bean id="join_org_list" class="com.daoman.parox.core.controller.directive.JoinOrgListDirective"/>
+	<bean id="org_right" class="com.daoman.parox.core.controller.directive.OrgRightDirective"/>
+	<bean id="colla_org_list" class="com.daoman.parox.core.controller.directive.CollaOrgListDirective"/>
+	<bean id="colla_list" class="com.daoman.parox.colla.controller.directive.CollaListDirective"/>
+	<bean id="colla_info" class="com.daoman.parox.colla.controller.directive.CollaInfoDirective"/>
+	<bean id="space_summary_list" class="com.daoman.parox.colla.controller.directive.SpaceSummaryListDirective"/>
+	<bean id="space_list" class="com.daoman.parox.colla.controller.directive.SpaceListDirective"/>
+	<bean id="task_list" class="com.daoman.parox.colla.controller.directive.TaskListDirective"/>
+	<bean id="tag_list" class="com.daoman.parox.colla.controller.directive.TagListDirective"/>
+
+</beans>

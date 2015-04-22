@@ -1,0 +1,18 @@
+<div>
+	<table class="table">
+		<tbody>
+			[#list orgList as c] [#assign org_id=c.orgId/]
+			<tr>
+				<td><a onclick="selectOrg('${c.orgId!}','${c.orgName!}')" >${c.orgName!} &nbsp &nbsp ${c.address!}</a></td>
+			</tr>
+			[/#list]
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+function selectOrg(orgId,orgName){
+	$("#box_msg").dialog("close");
+	document.getElementById("orgName").value=orgName;
+	document.getElementById("orgId").value=orgId;
+}
+</script>

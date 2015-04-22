@@ -1,0 +1,121 @@
+/******404 *****/
+html,body{margin:0;padding:0;}
+a,a:hover{text-decoration:none;}
+#wrong-404{text-align:center;margin:0;overflow:hidden;padding-top:11.5%;background:#F7F8F8;}
+#wrong-404 .sp{width:110px;line-height:28px;font-size:18px;text-align:center;color:#fff;
+    display:block;margin:1.7% auto;padding-left:0;padding-right:0;
+}
+#wrong-404 .bt{width:100%;position:fixed;left:0;bottom:0;z-index:-1;}
+#wrong-404 .tp{width:60%;margin:0 auto;}
+.wrong{margin:-4.7% auto 10%;position:relative;}
+.wrong h1{color:#606060;font-size:34px;}
+.wrong p{color:#898989;font-size:20px;}
+.wrong span{color:#ED503A;}
+@media only screen and (max-width: 1400px) {
+    #wrong-404 .sp{ font-size: 18px;width:110px;line-height:28px;}
+    .wrong h1{font-size:34px;}
+    .wrong p{font-size:20px;}
+}
+@media only screen and (max-width: 1280px) {
+    #wrong-404 .sp{ font-size: 14px;width:80px;line-height:18px;}
+    .wrong h1{font-size:30px;}
+    .wrong p{font-size:18px;}
+}
+@media only screen and (max-width: 1096px) {
+    #wrong-404 .sp{ font-size: 16px;width:100px;line-height:20px;}
+    .wrong h1{font-size:28px;}
+    .wrong p{font-size:16px;}
+}
+@media only screen and (max-width: 768px)  {
+    #wrong-404 .sp{ font-size: 12px;width:60px;line-height:14px;}
+    .wrong h1{font-size:18px;}
+    .wrong p{font-size:14px;}
+}
+
+/******browser *****/
+#browser{
+    background:#f7f7f7;font-size:16px;color:#979797;
+}
+#browser .content{margin:13.7% auto 0;width:50%;}
+#browser p{
+    color:#979797;font-size:20px;line-height:26px;margin-left:1%;margin-bottom:3%;
+}
+.box{margin:0 8%;width:84%;letter-spacing:0.86px;}
+#browser .row{width:100%;text-align:center;}
+#browser a{width:56%;margin:5% 18% 8%;display:block;}
+#browser .row div{margin-bottom:8%;}
+#browser img{width:100%;margin-bottom:5%;}
+#browser b{color:#008bab;padding-left:6px;font-weight:normal;}
+@media only screen and (max-width: 1400px) {
+    #browser .row div{font-size:18px;line-height:16px;}
+}
+@media only screen and (max-width: 1280px) {
+    #browser p{ font-size: 18px;line-height:22px;}
+    #browser .row div{font-size:16px;line-height:16px;}
+}
+@media only screen and (max-width: 1096px) {
+    #browser p{ font-size: 14px;line-height:16px;}
+    #browser .row div{font-size:12px;line-height:16px;}
+}
+@media only screen and (max-width: 768px)  {
+    #browser p{ font-size: 14px;line-height:16px;}
+    #browser .row div{font-size:12px;line-height:16px;}
+}
+
+/******failure *****/
+#failure{
+    background:#EDF2F5;
+}
+#failure .content{width:72%;margin:14.4% 0 0 27.6%;float:left;}
+#failure img{
+    width:32.1%;float:left;
+}
+#failure .right{float:left;margin:8.4% 6.6%;}
+#failure h1{color:#898989;text-shadow:1px 1px #F3F6F6;}
+#failure p{font-size:18px;color:#BFC4C7;line-height:34px;padding-left:1%;}
+#failure a{color:#51C0C9;}
+#failure a:hover{text-decoration:underline;}
+@media only screen and (max-width: 1400px) {
+    #failure h1{font-size:36px;}
+    #failure p{font-size:18px;}
+}
+@media only screen and (max-width:1280px) {
+    #failure h1{font-size:28px;}
+    #failure p{font-size:16px;}
+}
+@media only screen and (max-width:1096px) {
+    #failure h1{font-size:24px;}
+    #failure p{font-size:14px;}
+}
+@media only screen and (max-width:768px) {
+    #failure h1{font-size:16px;}
+    #failure p{font-size:12px;line-height:14px;}
+}
+/******error *****/
+#error{background:#f8f8f8;}
+#error img{width:100%;}
+#error .content{width:19.5%;margin:6.5% auto;}
+#error .bottom{margin-top:16%;text-align:center;color:#7A7A7A;font-size:22px;line-height:28px;}
+#error h1{font-size:48px; background:url("../images/common/hd.png") no-repeat 0 bottom;background-size:100%;padding-bottom:6%;margin-bottom:10%;}
+#error p{font-size:18px;}
+#error .row{width:80%;margin:0 10%;}
+#error .row a{margin:14% 4%;line-height:26px;}
+@media only screen and (max-width: 1400px) {
+    #error h1{font-size:36px;}
+    #error p{font-size:18px;}
+
+}
+@media only screen and (max-width:1280px) {
+    #error h1{font-size:28px;}
+    #error p{font-size:16px;}
+}
+@media only screen and (max-width:1096px) {
+    #error h1{font-size:24px;}
+    #error p{font-size:14px;}
+    #error .row a{line-height:18px;}
+}
+@media only screen and (max-width:768px) {
+    #error h1{font-size:16px;}
+    #error p{font-size:12px;line-height:14px;}
+    #error .row a{font-size:12px;}
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title> <@p.Include page="admin.ftl"/>
+</head>
+<body>
+	<div class="body-box">
+		<div class="rhead">
+			<div class="rpos">当前位置： 运营管理 - 组织管理 - 详情</div>
+			<form class="ropt" method="post">
+				<input type="button" value="返回列表" onclick="history.back();" />
+			</form>
+			<div class="clear"></div>
+		</div>
+		<@pj.form id="submitForm" labelWidth="10" >
+		<tr>
+			<td width="15%" class="pn-flabel pn-flabel-h">组织ID：</td>
+			<td width="35%" class="pn-fcontent">${org.orgId!}</td>
+			<td width="15%" class="pn-flabel pn-flabel-h">上级组织ID：</td>
+			<td width="35%" class="pn-fcontent">${org.parentId!}</td>
+			<tr />
+			<tr>
+				<td width="15%" class="pn-flabel pn-flabel-h">组织名称：</td>
+				<td width="35%" class="pn-fcontent">${org.orgName!}</td>
+				<td width="15%" class="pn-flabel pn-flabel-h">组织类别：</td>
+				<td width="35%" class="pn-fcontent"><#if org.orgType =
+					1>国有<#elseif org.orgType = 2>集体<#else>私有</#if></td>
+				<tr />
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">所在行业：</td>
+					<td width="35%" class="pn-fcontent">${industry!}</td>
+					<td width="15%" class="pn-flabel pn-flabel-h">所在地区：</td>
+					<td width="35%" class="pn-fcontent">${area!}</td>
+				</tr>
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">Email：</td>
+					<td width="35%" class="pn-fcontent">${org.email!}</td>
+					<td width="15%" class="pn-flabel pn-flabel-h">主页：</td>
+					<td width="35%" class="pn-fcontent">${org.website!}</td>
+				</tr>
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">联系电话：</td>
+					<td width="35%" class="pn-fcontent">${org.telephone!}</td>
+					<td width="15%" class="pn-flabel pn-flabel-h">传真：</td>
+					<td width="35%" class="pn-fcontent">${org.fax!}</td>
+				</tr>
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">企业负责人：</td>
+					<td width="35%" class="pn-fcontent">${org.linkman!}</td>
+					<td width="15%" class="pn-flabel pn-flabel-h">员工数：</td>
+					<td width="35%" class="pn-fcontent">${org.employeeNumber!}</td>
+				</tr>
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">用户数量：</td>
+					<td width="35%" class="pn-fcontent">${org.userNumber!}</td>
+					<td width="15%" class="pn-flabel pn-flabel-h">存储大小：</td>
+					<td width="35%" class="pn-fcontent">${org.storageSize!}</td>
+				</tr>
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">创建时间：</td>
+					<td width="35%" class="pn-fcontent">${org.createTime?string("YYYY-MM-dd
+						hh:mm:ss")}</td>
+					<td width="15%" class="pn-flabel pn-flabel-h">组织状态：</td>
+					<td width="35%" class="pn-fcontent"><#if org.status = 1><span style="color:red;">禁用</span><#else><span style="color:green;">正常</span></#if></td>
+				</tr>
+				<tr>
+					<td width="15%" class="pn-flabel pn-flabel-h">认证状态：</td>
+					<td width="35%" class="pn-fcontent"><#if org.checkStatus =
+						0>未申请<#elseif org.checkStatus = 1>审核中<#else>已审核</#if></td>
+					<td width="15%" class="pn-flabel pn-flabel-h">认证结果：</td>
+					<td width="35%" class="pn-fcontent"><#if org.isValid =
+						false>尚未通过认证<#else><span style="color:green;">正常</span>已通过认证</span></#if></td>
+				</tr>
+				<tr>
+					<td class="pn-flabel pn-flabel-h">组织机构代码证照：</td>
+					<td colspan="3" class="pn-fcontent">
+						<#if org.orgPhoto??><img src=${org.orgPhoto} height=600 onclick="javascript:window.open(this.src)" /><#else><span style="color:red;">未提交组织机构代码证扫描件</span></#if>
+					</td>
+				</tr>
+				</@pj.form>
+	</div>
+</body>
+</script>
+</html>

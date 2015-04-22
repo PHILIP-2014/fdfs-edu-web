@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<script type="text/javascript">
+$(function() {
+	var fileStatus = ${fileStatus!};
+	if(fileStatus != null){
+		document.getElementById("fileStatus").value=fileStatus;
+	}
+})
+</script>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 文件管理 - 列表</div>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+文件ID：<input  type="text" name="docId" size="8" value="${docId!}"/>&nbsp;
+文件名称：<input  type="text" name="docName" value="${docName!}"/>&nbsp;
+最后修改时间从:  <@pj.text name="lastEditStartTime"	
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>
+到<@pj.text name="lastEditEndTime"
+	onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+    class="Wdate"/>&nbsp;
+ 状态:<select name="fileStatus" id="fileStatus">
+    <option value="">[请选择]</option>
+	<option value="0">上传完毕</option>
+	<option value="1">正常状态</option>
+	<option value="2">删除状态</option>
+	<option value="3">永久删除</option>
+	<option value="4">新版本上传</option>
+</select>
+<input type="submit" value="搜索" />
+</form>
+<@p.grid
+  cols=[{"label":"ID","name":"row.docId"},
+        {"label":"文件名称","width":180,"name":"row.docName"},
+        {"label":"版本号","name":"row.nowVersion"},
+        {"label":"文件大小","name":"(row.fileSize/1024)+('M')"},
+        {"label":"文件后缀","name":"row.suffix"},
+        {"label":"空间","name":"(row.space.name+' ('+row.spaceId+')')!"},
+        {"label":"任务","name":"(row.task.name+' ('+row.taskId+')')!"},
+        {"label":"创建者","name":"(row.creater.realName+' ('+row.createUserId+')')!"},
+        {"label":"拥有者","name":"(row.owner.realName+' ('+row.ownerId+')')!"},
+        {"label":"删除者","name":"(row.trasher.realName+' ('+row.trashUserId+')')!"},
+        {"label":"共享次数","name":"row.shareCount"},
+        {"label":"创建时间","name":"(row.createTime?string('yyyy-MM-dd hh:mm'))!"},
+        {"label":"编辑时间","name":"(row.editTime?string('yyyy-MM-dd hh:mm'))!"},
+        {"label":"状态","name":"(row.fileStatus=0)?string('等待认领',(row.fileStatus=1)?string('<span style=\"color:green;\">正常</span>',(row.fileStatus=2)?string('<span style=\"color:red;\">删除</span>','<span style=\"color:red;\">永久删除</span>')))))", "escape":false}
+       ]
+  keyId="docId" keyId2="docId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/doc/detail","name":"<img src='"+base+"/images/admin/show.gif'>"}
+                ]
+  keepParams=[
+			  {"name":"returnPage","value":"pageNo"},
+			  {"name":"docId","encode":false},
+			  {"name":"docName","encode":true},
+			  {"name":"lastEditStartTime","encode":false},
+			  {"name":"lastEditEndTime","encode":false},
+			  {"name":"fileStatus","encode":false}
+  			 ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,665 @@
+/**
+ * parox通用的样式表
+ *
+ * @project      parox
+ * @author       Design Team at Parox
+ * @copyright    2014 杭州道曼科技有限公司
+ *
+ */
+
+
+/*--------------------全局定义--------------------*/
+::-webkit-selection { color: #fff; background-color: #0893d2; }
+::-moz-selection { color: #fff; background-color: #0893d2; }
+::-ms-selection { color: #fff; background-color: #0893d2; }
+::-o-selection { color: #fff; background-color: #0893d2; }
+::selection { color: #fff; background-color: #0893d2; }
+
+/* 常用标签、基本标签默认样式取消，防止不同浏览器显示效果不同，text-align：center，解决不同浏览器居中问题 */
+body,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,tr,th {
+	margin: 0;
+	padding: 0;
+}
+
+/* 标签属性，textarea、input强制输入时内容超出换行 */
+textarea,input,div {
+	word-wrap: break-word;
+/*	word-break: break-all;*/
+	padding: 0;
+	margin: 0;
+}
+
+/* 清楚ul列表标记的样式，ul列表更多的用在不需要列表前置符号的样式里 */
+li { list-style: none; }
+
+
+/* 定义图片边框，当图片作为链接内容被填充时，会有默认边框出现，重定义掉 */
+img { border: 0 none; }
+
+
+/* 定义H系列标签，覆盖H系列标签默认属性 */
+h1 {
+	font-size: 20px;
+	line-height: 1;
+}
+h2 {
+	font-size: 16px;
+	line-height: 1.25;
+}
+h3 {
+	font-size: 14px;
+	line-height: 1.428571;
+}
+h4 {
+	font-size: 13px;
+	line-height: 1.538462;
+}
+h5 {
+	font-size: 12px;
+	line-height: 1.666667;
+}
+h6 {
+	font-size: 10px;
+	line-height: 2;
+}
+
+/*
+ * 命名规范：属性名称 + 分属性名称 + 属性值；
+ * 缩写：取个属性名称的头字母，以连字符连接；
+ * 常用的名称可以使用多个字母缩写表示（如：bg，bd，btn），语义不明确的要使用全称；
+ * 属性值本身能够明确表示该属性含义的可以直接使用属性值命名；
+ * 尽可能多的采用语义化命名；
+ * 常用的写在前面，不常用的写在后面
+ */
+/* ---------- 动画属性 animation ---------- */
+
+/* ---------- 背景属性 background ---------- */
+.bg-un { background-color: transparent !important; }
+.bg-default { background-color: #f5f5f5; }
+.bg-white { background-color: #fff; }
+
+
+/* ---------- 边框属性 border & outline ---------- */
+
+/* border */
+.bd-un { border-color: transparent !important; }
+.bd-t-un { border-top-color: transparent !important; }
+.bd-r-un { border-right-color: transparent !important; }
+.bd-b-un { border-bottom-color: transparent !important; }
+.bd-l-un { border-left-color: transparent !important; }
+
+.bd-gray { border: 1px solid #e6e6e6 !important; }
+.bd-t-gray { border-top: 1px solid #e6e6e6 !important; }
+.bd-r-gray { border-right: 1px solid #e6e6e6 !important; }
+.bd-b-gray { border-bottom: 1px solid #e6e6e6 !important; }
+.bd-l-gray { border-left: 1px solid #e6e6e6 !important; }
+
+.bd-success { border: 1px solid #e6e6e6 !important; }
+.bd-t-success { border-top: 1px solid #e6e6e6 !important; }
+.bd-r-success { border-right: 1px solid #e6e6e6 !important; }
+.bd-b-success { border-bottom: 1px solid #e6e6e6 !important; }
+.bd-l-success { border-left: 1px solid #e6e6e6 !important; }
+
+.bd-danger { border: 1px solid #e6e6e6 !important; }
+.bd-t-danger { border-top: 1px solid #e6e6e6 !important; }
+.bd-r-danger { border-right: 1px solid #e6e6e6 !important; }
+.bd-b-danger { border-bottom: 1px solid #e6e6e6 !important; }
+.bd-l-danger { border-left: 1px solid #e6e6e6 !important; }
+
+.bd-primary { border: 1px solid #e6e6e6 !important; }
+.bd-t-primary { border-top: 1px solid #e6e6e6 !important; }
+.bd-r-primary { border-right: 1px solid #e6e6e6 !important; }
+.bd-b-primary { border-bottom: 1px solid #e6e6e6 !important; }
+.bd-l-primary { border-left: 1px solid #e6e6e6 !important; }
+
+.bd-warning { border: 1px solid #e6e6e6 !important; }
+.bd-t-warning { border-top: 1px solid #e6e6e6 !important; }
+.bd-r-warning { border-right: 1px solid #e6e6e6 !important; }
+.bd-b-warning { border-bottom: 1px solid #e6e6e6 !important; }
+.bd-l-warning { border-left: 1px solid #e6e6e6 !important; }
+
+.bd-muted { border: 1px solid #e6e6e6 !important; }
+.bd-t-muted { border-top: 1px solid #e6e6e6 !important; }
+.bd-r-muted { border-right: 1px solid #e6e6e6 !important; }
+.bd-b-muted { border-bottom: 1px solid #e6e6e6 !important; }
+.bd-l-muted { border-left: 1px solid #e6e6e6 !important; }
+
+.bd-2 { border-width: 2px !important; }
+.bd-t-2 { border-top-width: 2px !important; }
+.bd-r-2 { border-right-width: 2px !important; }
+.bd-b-2 { border-bottom-width: 2px !important; }
+.bd-l-2 { border-left-width: 2px !important; }
+
+.bd-3 { border-width: 3px !important; }
+.bd-t-3 { border-top-width: 3px !important; }
+.bd-r-3 { border-right-width: 3px !important; }
+.bd-b-3 { border-bottom-width: 3px !important; }
+.bd-l-3 { border-left-width: 3px !important; }
+/* border-radius */
+.bdr-un { border-radius: 0 !important; }
+.bdr-t-l-un { border-top-left-radius: 0 !important; }
+.bdr-t-r-un { border-top-right-radius: 0 !important; }
+.bdr-b-l-un { border-bottom-left-radius: 0 !important; }
+.bdr-b-r-un { border-bottom-right-radius: 0 !important; }
+
+.bdr-1 { border-radius: 1px !important; }
+.bdr-t-l-1 { border-top-left-radius: 1px !important; }
+.bdr-t-r-1 { border-top-right-radius: 1px !important; }
+.bdr-b-l-1 { border-bottom-left-radius: 1px !important; }
+.bdr-b-r-1 { border-bottom-right-radius: 1px !important; }
+
+.bdr-2 { border-radius: 2px !important; }
+.bdr-t-l-2 { border-top-left-radius: 2px !important; }
+.bdr-t-r-2 { border-top-right-radius: 2px !important; }
+.bdr-b-l-2 { border-bottom-left-radius: 2px !important; }
+.bdr-b-r-2 { border-bottom-right-radius: 2px !important; }
+
+.bdr-3 { border-radius: 3px !important; }
+.bdr-t-l-3 { border-top-left-radius: 3px !important; }
+.bdr-t-r-3 { border-top-right-radius: 3px !important; }
+.bdr-b-l-3 { border-bottom-left-radius: 3px !important; }
+.bdr-b-r-3 { border-bottom-right-radius: 3px !important; }
+
+.bdr-4 { border-radius: 4px !important; }
+.bdr-t-l-4 { border-top-left-radius: 4px !important; }
+.bdr-t-r-4 { border-top-right-radius: 4px !important; }
+.bdr-b-l-4 { border-bottom-left-radius: 4px !important; }
+.bdr-b-r-4 { border-bottom-right-radius: 4px !important; }
+
+.bdr-5 { border-radius: 5px !important; }
+.bdr-t-l-5 { border-top-left-radius: 5px !important; }
+.bdr-t-r-5 { border-top-right-radius: 5px !important; }
+.bdr-b-l-5 { border-bottom-left-radius: 5px !important; }
+.bdr-b-r-5 { border-bottom-right-radius: 5px !important; }
+
+/* border width */
+.bd-w-1 { border-width: 1px; }
+.bd-w-2 { border-width: 2px; }
+.bd-w-3 { border-width: 3px; }
+.bd-w-4 { border-width: 4px; }
+.bd-w-5 { border-width: 5px; }
+
+/* ---------- box 属性 ---------- */
+
+/* box shadow */
+.bs-un { box-shadow: none; }
+.bs-default { box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+/* ---------- 颜色属性 opacity ---------- */
+
+
+/* ---------- 尺寸属性 width & height ---------- */
+
+/* width */
+.w-auto { width: auto !important; }
+.w-xs { width: 140px !important; }
+.w-sm { width: 220px !important; }
+.w-md { width: 300px !important; }
+.w-lg { width: 380px !important; }
+
+.w-1{ width: 10px !important;}
+.w-2{ width: 20px !important;}
+.w-3{ width: 30px !important;}
+.w-4{ width: 40px !important;}
+.w-5{ width: 50px !important;}
+.w-6{ width: 60px !important;}
+.w-7{ width: 70px !important;}
+.w-8{ width: 80px !important;}
+.w-9{ width: 90px !important;}
+.w-10{ width: 100px !important;}
+.w-11{ width: 110px !important;}
+.w-12{ width: 120px !important;}
+.w-13{ width: 130px !important;}
+.w-14{ width: 140px !important;}
+.w-15{ width: 150px !important;}
+
+.w-1-p{ width: 1% !important;}
+.w-2-p{ width: 2% !important;}
+.w-3-p{ width: 3% !important;}
+.w-4-p{ width: 4% !important;}
+.w-5-p{ width: 5% !important;}
+.w-6-p{ width: 6% !important;}
+.w-7-p{ width: 7% !important;}
+.w-8-p{ width: 8% !important;}
+.w-9-p{ width: 9% !important;}
+.w-10-p{ width: 10% !important;}
+.w-11-p{ width: 11% !important;}
+.w-12-p{ width: 12% !important;}
+.w-13-p{ width: 13% !important;}
+.w-14-p{ width: 14% !important;}
+.w-15-p{ width: 15% !important;}
+.w-25-p{ width: 25% !important;}
+.w-50-p{ width: 50% !important;}
+.w-75-p{ width: 75% !important;}
+.w-100-p{ width: 100% !important;}
+
+
+/* height */
+.h-auto { height: auto !important; }
+.h-1{ height: 1px !important;}
+.h-2{ height: 2px !important;}
+.h-3{ height: 3px !important;}
+.h-4{ height: 4px !important;}
+.h-5{ height: 5px !important;}
+.h-6{ height: 6px !important;}
+.h-7{ height: 7px !important;}
+.h-8{ height: 8px !important;}
+.h-9{ height: 9px !important;}
+.h-10{ height: 10px !important;}
+.h-11{ height: 11px !important;}
+.h-12{ height: 12px !important;}
+.h-13{ height: 13px !important;}
+.h-14{ height: 14px !important;}
+.h-15{ height: 15px !important;}
+.h-20{ height: 20px}
+.h-30{ height: 30px;}
+
+.h-1-p{ height: 1% !important;}
+.h-2-p{ height: 2% !important;}
+.h-3-p{ height: 3% !important;}
+.h-4-p{ height: 4% !important;}
+.h-5-p{ height: 5% !important;}
+.h-6-p{ height: 6% !important;}
+.h-7-p{ height: 7% !important;}
+.h-8-p{ height: 8% !important;}
+.h-9-p{ height: 9% !important;}
+.h-10-p{ height: 10% !important;}
+.h-11-p{ height: 11% !important;}
+.h-12-p{ height: 12% !important;}
+.h-13-p{ height: 13% !important;}
+.h-14-p{ height: 14% !important;}
+.h-15-p{ height: 15% !important;}
+.h-25-p{ height: 25% !important;}
+.h-50-p{ height: 50% !important;}
+.h-75-p{ height: 75% !important;}
+.h-100-p{ height: 100% !important;}
+
+/* ---------- 字体属性 font ---------- */
+
+/* font-size */
+.f-s-10 { font-size: 10px !important; }
+.f-s-12 { font-size: 12px !important; }
+.f-s-13 { font-size: 13px !important; }
+.f-s-14 { font-size: 14px !important; }
+.f-s-16 { font-size: 16px !important; }
+.f-s-18 { font-size: 18px !important; }
+.f-s-20 { font-size: 20px !important; }
+.f-s-25 { font-size: 25px !important; }
+.f-s-28 { font-size: 28px !important; }
+.f-s-30 { font-size: 30px !important; }
+.f-s-35 { font-size: 35px !important; }
+.f-s-40 { font-size: 40px !important; }
+.f-s-55 { font-size: 55px !important; }
+
+/* font-weight */
+.f-w-n { font-weight: normal; }
+.f-w-b { font-weight: bold; }
+.f-w-br { font-weight: bolder; }
+
+/* */
+.-t-d-unline{ text-decoration: underline}
+.-t-d-none{  text-decoration: none}
+.-t-d-throu{ text-decoration: line-through}
+
+/* ---------- 列宽属性 col & row ---------- */
+
+/* ---------- 列表属性 list ---------- */
+
+/* ---------- 内边距属性 padding ---------- */
+.p-un { padding: 0 !important; }
+.p-t-un { padding-top: 0 !important; }
+.p-r-un { padding-right: 0 !important; }
+.p-b-un { padding-bottom: 0 !important; }
+.p-l-un { padding-left: 0 !important;}
+
+.p-1 { padding: 1px !important }
+.p-t-1 { padding-top: 1px !important }
+.p-r-1 { padding-right: 1px !important }
+.p-b-1 { padding-bottom: 1px !important }
+.p-l-1 { padding-left: 1px !important }
+
+.p-2 { padding: 2px !important }
+.p-t-2 { padding-top: 2px !important }
+.p-r-2 { padding-right: 2px !important }
+.p-b-2 { padding-bottom: 2px !important }
+.p-l-2 { padding-left: 2px !important }
+
+.p-3 { padding: 3px !important }
+.p-t-3 { padding-top: 3px !important }
+.p-r-3 { padding-right: 3px !important }
+.p-b-3 { padding-bottom: 3px !important }
+.p-l-3 { padding-left: 3px !important }
+
+.p-4 { padding: 4px !important }
+.p-t-4 { padding-top: 4px !important }
+.p-r-4 { padding-right: 4px !important }
+.p-b-4 { padding-bottom: 4px !important }
+.p-l-4 { padding-left: 4px !important }
+
+.p-5 { padding: 5px !important }
+.p-t-5 { padding-top: 5px !important }
+.p-r-5 { padding-right: 5px !important }
+.p-b-5 { padding-bottom: 5px !important }
+.p-l-5 { padding-left: 5px !important }
+
+.p-5-p { padding: 5% !important }
+.p-t-5-p { padding-top: 5% !important }
+.p-r-5-p { padding-right: 5% !important }
+.p-b-5-p { padding-bottom: 5% !important }
+.p-l-5-p { padding-left: 5% !important }
+
+.p-10 { padding: 10px !important }
+.p-t-10 { padding-top: 10px !important }
+.p-r-10 { padding-right: 10px !important }
+.p-b-10 { padding-bottom: 10px !important }
+.p-l-10 { padding-left: 10px !important }
+
+.p-10-p { padding: 10% !important }
+.p-t-10-p { padding-top: 10% !important }
+.p-r-10-p { padding-right: 10% !important }
+.p-b-10-p { padding-bottom: 10% !important }
+.p-l-10-p { padding-left: 10% !important }
+
+.p-15 { padding: 15px !important }
+.p-t-15 { padding-top: 15px !important }
+.p-r-15 { padding-right: 15px !important }
+.p-b-15 { padding-bottom: 15px !important }
+.p-l-15 { padding-left: 15px !important }
+
+.p-20 { padding: 20px !important }
+.p-t-20 { padding-top: 20px !important }
+.p-r-20 { padding-right: 20px !important }
+.p-b-20 { padding-bottom: 20px !important }
+.p-l-20 { padding-left: 20px !important }
+
+.p-25 { padding: 25px !important }
+.p-t-25 { padding-top: 25px !important }
+.p-r-25 { padding-right: 25px !important }
+.p-b-25 { padding-bottom: 25px !important }
+.p-l-25 { padding-left: 25px !important }
+
+.p-30 { padding: 30px !important }
+.p-t-30 { padding-top: 30px !important }
+.p-r-30 { padding-right: 30px !important }
+.p-b-30 { padding-bottom: 30px !important }
+.p-l-30 { padding-left: 30px !important }
+
+.p-40 { padding: 40px !important }
+.p-t-40 { padding-top: 40px !important }
+.p-r-40 { padding-right: 40px !important }
+.p-b-40 { padding-bottom: 40px !important }
+.p-l-40 { padding-left: 40px !important }
+
+.p-50 { padding: 50px !important }
+
+/* ---------- 外边距属性 margin ---------- */
+.m-un { margin: 0 !important }
+.m-t-un { margin-top: 0 !important }
+.m-r-un { margin-right: 0 !important }
+.m-b-un { margin-bottom: 0 !important }
+.m-l-un { margin-left: 0 !important }
+
+.m-1 { margin: 1px !important }
+.m-t-1 { margin-top: 1px !important }
+.m-r-1 { margin-right: 1px !important }
+.m-b-1 { margin-bottom: 1px !important }
+.m-l-1 { margin-left: 1px !important }
+
+.m-2 { margin: 2px !important }
+.m-t-2 { margin-top: 2px !important }
+.m-r-2 { margin-right: 2px !important }
+.m-b-2 { margin-bottom: 2px !important }
+.m-l-2 { margin-left: 2px !important }
+
+.m-3 { margin: 3px !important }
+.m-t-3 { margin-top: 3px !important }
+.m-r-3 { margin-right: 3px !important }
+.m-b-3 { margin-bottom: 3px !important }
+.m-l-3 { margin-left: 3px !important }
+
+.m-4 { margin: 4px !important }
+.m-t-4 { margin-top: 4px !important }
+.m-r-4 { margin-right: 4px !important }
+.m-b-4 { margin-bottom: 4px !important }
+.m-l-4 { margin-left: 4px !important }
+
+.m-5 { margin: 5px !important }
+.m-t-5 { margin-top: 5px !important }
+.m-r-5 { margin-right: 5px !important }
+.m-b-5 { margin-bottom: 5px !important }
+.m-l-5 { margin-left: 5px !important }
+
+.m-7 { margin: 7px !important }
+.m-t-7 { margin-top: 7px !important }
+.m-r-7 { margin-right: 7px !important }
+.m-b-7 { margin-bottom: 7px !important }
+.m-l-7 { margin-left: 7px !important }
+
+.m-t-9 { margin-top: 9px !important }
+
+.m-10 { margin: 10px !important }
+.m-t-10 { margin-top: 10px !important }
+.m-r-10 { margin-right: 10px !important }
+.m-b-10 { margin-bottom: 10px !important }
+.m-l-10 { margin-left: 10px !important }
+
+.m-15 { margin: 15px !important }
+.m-t-15 { margin-top: 15px !important }
+.m-r-15 { margin-right: 15px !important}
+.m-b-15 { margin-bottom: 15px !important }
+.m-l-15 { margin-left: 15px !important }
+
+.m-20 { margin: 20px !important }
+.m-t-20 { margin-top: 20px !important }
+.m-r-20 { margin-right: 20px !important}
+.m-b-20 { margin-bottom: 20px !important }
+.m-l-20 { margin-left: 20px !important }
+
+.m-25 { margin: 25px !important }
+.m-t-25 { margin-top: 25px !important }
+.m-r-25 { margin-right: 25px !important}
+.m-b-25 { margin-bottom: 25px !important }
+.m-l-25 { margin-left: 25px !important }
+
+.m-30 { margin: 30px !important }
+.m-t-30 { margin-top: 30px !important }
+.m-r-30 { margin-right: 30px !important }
+.m-b-30 { margin-bottom: 30px !important }
+.m-l-30 { margin-left: 30px !important }
+
+.m-40 { margin: 40px !important }
+.m-t-40 { margin-top: 40px !important }
+.m-r-40 { margin-right: 40px !important }
+.m-b-40 { margin-bottom: 40px !important }
+.m-l-40 { margin-left: 40px !important }
+
+.m-60 { margin: 60px !important }
+.m-t-60 { margin-top: 60px !important }
+.m-r-60 { margin-right: 60px !important }
+.m-b-60 { margin-bottom: 60px !important }
+.m-l-60 { margin-left: 60px !important }
+
+.-m-r-5 { margin-right: -5px !important; }
+
+.-m-30 { margin: -30px !important }
+.-m-t-30 { margin-top: -30px !important }
+.-m-r-30 { margin-right: -30px !important }
+.-m-b-30 { margin-bottom: -30px !important }
+.-m-l-30 { margin-left: -30px !important }
+
+.m-t-8 { margin-top: 8px !important; }
+.m-t-200 { margin-top: 200px !important; }
+
+.m-l-60 { margin-left: 60px; }
+  
+/* ---------- 定位属性 position ---------- */
+
+/*vertical-align*/
+.v-a-t { vertical-align: top }
+.v-a-m { vertical-align: middle }
+.v-a-b { vertical-align: bottom }
+.v-a-sub { vertical-align: sub }
+.v-a-super { vertical-align: super }
+.v-a-base { vertical-align: baseline }
+.v-a-tt { vertical-align: text-top }
+.v-a-tb { vertical-align: text-bottom }
+
+
+/* cursor */
+.cur-p { cursor: pointer }
+.cur-m { cursor: move }
+.cur-h { cursor: help }
+.cur-w { cursor: wait }
+.cur-t { cursor: text }
+.cur-un { cursor: not-allowed }
+.cur-de { cursor: default }
+
+
+/* visibility */
+.v-visible { visibility: visible }
+.v-hidden { visibility: hidden }
+.v-collapse { visibility: collapse }
+
+/* position */
+.p-relative { position: relative !important; }
+.p-absolute { position: absolute !important; }
+.p-absolite { position: absolute !important; }
+.p-absolute { position: absolute !important; }
+.p-fixed { position: fixed !important; }
+.p-static { position: static !important; }
+
+/*position-range*/
+.l-0{ left: 0 !important;}
+.r-0{ right: 0 !important;}
+.t-0{ top: 0 !important;}
+.b-0{ bottom: 0 !important;}
+
+.l-1{ left: -1px !important;}
+.r-1{ right: -1px !important;}
+.t-1{ top: -1px !important;}
+.b-1{ bottom: -1px !important;}
+
+.l-1em{ left: 1em !important;}
+.r-1em{ right: 1em !important;}
+.t-1em{ top: 1em !important;}
+.b-1em{ bottom: 1em !important;}
+
+/* display */
+.display-un { display: none !important; }
+.display-b { display: block !important; }
+.display-in { display: inline-block !important; }
+.no-display{display:none;}
+
+/* ---------- 表格属性 table ---------- */
+
+/* ---------- 文本属性 text ---------- */
+
+/* text color */
+.text-main { color: #333 }
+a.text-main:hover { color: #2c7ba3 }
+
+.text-primary-dark { color: #2c7ba3 }
+a.text-primary-dark:hover { color: #176790 }
+
+.text-primary-light { color: #4a8bca }
+a.text-primary-light:hover { color: #2d73b8 }
+
+.text-danger-dark { color: #d9534f }
+a.text-danger-dark:hover{ color: #c1332f}
+
+.text-danger-light { color: #e57368 }
+a.text-danger-light:hover { color: #d34b3e }
+
+.text-warning-dark { color: #e49307 }
+a.text-warning-dark:hover{color: #cd860b}
+
+.text-warning-light { color: #fbcb43 }
+a.text-warning-light:hover { color: #edbb2d }
+
+.text-success-dark { color: #0f9d58 }
+a.text-success-dark:hover { color: #0c8349}
+
+.text-success-light { color: #5cb85c}
+a.text-success-light:hover { color: #39aa39}
+
+.text-info-dark { color: #666 }
+a.text-info-dark:hover{ color: #333 }
+
+.text-info-light { color: #999 }
+a.text-info-light:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+
+
+.text-help { color: #999 }
+a.text-help:hover{color: #555}
+
+.text-action {color: #ff5500;}
+a.text-action:hover {color: #e36904;}
+
+.text-white {color: #fff !important;}
+a.text-white:hover {color: #ffffff;}
+
+/* text-align */
+.t-a-l { text-align: left !important;}
+.t-a-c { text-align: center !important;}
+.t-a-r { text-align: right !important;}
+.t-a-j { text-align: justify !important;}
+
+
+/* text-indent */
+.t-i-1 { text-indent: 1em }
+.t-i-1a { text-indent: 1.5em }
+.t-i-2 { text-indent: 2em }
+.t-i-3 { text-indent: 3em }
+.t-i-4 { text-indent: 4em }
+.t-i-5 { text-indent: 5em }
+
+/* text-decoration */
+.t-d-un { text-decoration: none; }
+.t-d-ul { text-decoration: underline; }
+.t-d-ol { text-decoration: overline; }
+.t-d-lt { text-decoration: line-through; }
+.t-d-b { text-decoration: blink; }
+
+
+/* line-height */
+.l-h-1 { line-height: 1 }
+.l-h-1a { line-height: 1.5 }
+.l-h-2 { line-height: 2 }
+.l-h-2a { line-height: 2.5 }
+.l-h-3 { line-height: 3 }
+.l-h-3a { line-height: 3.5}
+
+/* white-space */
+.white-space-normal { white-space: normal !important}
+.white-space-nowrap { white-space: nowrap !important}
+
+/*images size*/
+.img-20X20 { width: 20px; height: 20px }
+.img-30X30 { width: 30px; height: 30px }
+.img-40X40 { width: 40px; height: 40px }
+.img-60X60 { width: 60px; height: 60px }
+.img-80X80 { width: 80px; height: 80px }
+.img-140X140 { width: 140px; height: 140px }
+
+/**/
+a,button { outline-style: none !important;}
+
+.error-box {
+	box-sizing: border-box;
+	height: 54px;
+	line-height: 54px;
+	padding-left: 50px;
+	text-align: left;
+	font-size: 14px;
+	color: #d3362d;
+	border: 1px solid #d3362d;
+	background-color: #ffe8e7;
+	margin: 0 auto;
+	background-image: url("img/icon-13-error.png");
+	background-repeat: no-repeat;
+	background-position: 21px 18px;
+}

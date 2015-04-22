@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置：运营分析 - 用户行为统计 - 用户发展日报</div>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+时间从:  <@pj.text name="beginDate"	
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>
+到  <@pj.text name="endDate"
+	onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+    class="Wdate"/>&nbsp;
+<input type="submit" value="搜索" />
+</form>
+<@p.grid
+  cols=[{"label":"日期","name":"row.issueDate?string('yyyy-MM-dd')","align":"center"},
+        {"label":"注册用户数","name":"row.newUserNum!","align":"center"},
+        {"label":"登录用户数","name":"row.loginUserNum!","align":"center"},
+        {"label":"人均在线时长(分钟)","name":"row.avgOnlineTime!","align":"center"},
+        {"label":"新建组织数","name":"row.newOrgNum!","align":"center"},
+        {"label":"新建空间数","name":"row.newSpaceNum!","align":"center"},
+        {"label":"发起任务数","name":"row.newTaskNum!","align":"center"},
+        {"label":"完成任务数","name":"row.finishTaskNum!","align":"center"},
+        {"label":"上传文档数","name":"row.newDocNum!","align":"center"},
+        {"label":"浏览文档数","name":"row.viewDocNum!","align":"center"},
+        {"label":"下载文档数","name":"row.downDocNum!","align":"center"},
+        {"label":"共享文件夹数","name":"row.shareFolderNum!","align":"center"},
+        {"label":"分享链接数","name":"row.shareLinkNum!","align":"center"}
+       ]
+    keyId="issueDate" keyId2="issueDate" rowIndex=false
+    isPagination=false
+	value=list
+    keepParams=[
+			  {"name":"beginDate","encode":false},
+			  {"name":"endDate","encode":false}
+  			 ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

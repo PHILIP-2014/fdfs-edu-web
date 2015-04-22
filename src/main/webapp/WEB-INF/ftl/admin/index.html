@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Parox—后台管理系统</title>
+<@p.Include page="admin.ftl"/>
+<!-- ${base}/js/showhidden.js -->
+<SCRIPT>
+function logout()
+{
+	AjaxGet(_CTX_PATH+'/admin/ajax/logout.jhtml',function callback(data){
+		if(data.success){
+			location.href=_CTX_PATH+'/admin/login.htm';
+		}else{
+			alert(data.message);
+		}
+	});
+}
+function onlineActive()
+{
+	/*jQuery.getJSON(url2(_contextPath+'/taoboyuan/service/activeUser.jhtml'), {},
+			function(data){
+				//testJson(data)
+				//alert(data.status)
+			}
+	);*/
+}
+window.setInterval('onlineActive()',120*1000);
+function swapMenu(mitem){
+	var mitems = document.getElementsByName("ms");
+	for(var i = 0; i < mitems.length; i++){
+	mitems[i].className="tabs-out";
+	}
+	mitem.className="tabs-over";
+}
+
+function changePassword(){
+	var width = 300;
+	var url = '${base}/admin/core/person/TpasswordPage.jhtml';
+	showMsgBox('修改密码',url,width);
+}
+</SCRIPT>
+<SCRIPT language=javascript type=text/javascript>
+    $(function() {
+        var currCatalogID = 'subItem1';
+        if (document.getElementById(currCatalogID) == null) {
+            currCatalogID = 'item1';
+            $("#" + currCatalogID).removeClass("collapse").addClass("expand");
+        }
+        else {
+            $("#" + currCatalogID).parent().parent().removeClass("collapse").addClass("expand");
+            $("#" + currCatalogID + " > a").addClass("Selected");
+        }
+
+    })
+    function Expand(obj) {
+        $("#treeul > li").removeClass("expand").addClass("collapse");
+        $(obj).parent().removeClass("collapse").addClass("expand");
+    }
+
+    function ShowTab(tabName) {
+        var array = new Array("JC", "Tg", "Qj");
+        for(var i=0;i<array.length;i++)
+        {
+            var currImg = $("#img" + array[i]).attr("src");
+            if (currImg == null || currImg == undefined) {
+                continue;
+            }
+            var currPos = currImg.lastIndexOf('.');
+            var currImgExceptExt = currImg.substr(0, currPos).replace("_","");
+            if(array[i] == tabName)
+            {
+                $("#div" + array[i]).show();
+                
+                currImg = currImgExceptExt + "_" + currImg.substring(currPos, currImg.length);
+            }
+            else
+            {
+                $("#div" + array[i]).hide();
+                currImg = currImgExceptExt + currImg.substring(currPos, currImg.length);
+            }
+            $("#img" + array[i]).attr("src", currImg);
+        }
+    }
+</SCRIPT>
+</head>
+
+<body class="index">
+<div class="pagecontent">
+<!--头部-->
+<script language="javascript">
+if(self!=top){top.location=self.location;} 
+function switchSysBar(){ 
+	if (switchPoint.innerText==3){ 
+		switchPoint.innerText=4; 
+		document.all("navleft").style.display="none";
+		document.all("sleft").style.width="10px";
+		document.all("sright").style.margin="0 0 0 10px";		
+	}else{ 
+		switchPoint.innerText=3;
+		document.all("navleft").style.display="";
+		document.all("sleft").style.width="200px";
+		document.all("sright").style.margin="0 0 0 200px";
+	}
+}
+function loadModule(fid)
+{
+	//navleft.src='leftnav.htm?pid='+fid;
+	$('#navleft').attr('src','leftnav.htm?pid='+fid);
+}
+</script>
+
+<div id="s-top">
+	<div class="logo"><img src="${base}/images/parox-logo-mid.png" alt=parox——系统管理平台 />
+    </div>
+    <div class="hy">欢迎您,<span class="074977" >${user.realName}</span> [ <a href="${baseAddr}/index.html" style="text-decoration:none" class="undl">Parox首页</a> | 
+    	
+   		<a href="javascript:void(0)" style="text-decoration:none" onclick="logout()" class="undl">退出</a>
+   		<!-- <a href="javascript:void(0)" style="text-decoration:none" onclick="changePassword()" class="undl"><font color=red>修改密码</font></a> -->
+    	 ] 
+    </div>
+    <div class="qlink">
+    	<!-- 
+    	<a href="http://www.taobao.com/go/act/sale/tby.php" target="_blank"><img src="${base}/images/admin/an_07.gif"></a>&nbsp;
+    	<a href="#"><img src="${base}/images/admin/an_09.gif"></a> 
+    	-->
+    </div>
+    <div class="clr"></div>
+</div>
+<!--导航-->
+<#assign firstModule=0>
+<div id=s-nav>
+	<ul>
+		<#list modules as m>
+		<#if m_index = 0><#assign firstModule=m.functionId></#if>
+    	<li class="on"><a href="javascript:void(0)" onclick="loadModule('${m.functionId}')">${m.name}</a></li>
+    	</#list>
+    </ul>
+    <div class="clr"></div>
+</div>
+
+<!--主体部分-->
+<div id=s-main>
+    
+    <!--左侧导航-->
+	<div id="sleft" class="s-left">
+		<iframe id="navleft" src="left.htm" height="100%" width="100%" marginwidth="0" marginheight="0" frameborder="0" scrolling="no"></iframe>
+	    
+	    <div class="navline">
+		    <div>
+		    <table width="10" height="100%" border="0" cellpadding="0" cellspacing="0"  style="background-color:#e4f2fa;" > 
+		      <tr valign="middle"> 
+		        <td style="HEIGHT: 100%" onClick="switchSysBar()" valign="middle" bordercolor="#e4f2fa" >
+		            <font style="FONT-SIZE: 9pt; CURSOR: default; COLOR: #6c92ad; FONT-FAMILY: Webdings; "> 
+		            <span class="navPoint" id="switchPoint" title="关闭/打开左栏">3</span> </font></td> 
+		      </tr> 
+		    </table>
+		    </div>
+	    </div>    
+    </div>
+    
+    <!--中间内容-->
+    <div id="sright" class="s-right">
+    	<iframe id="fmmain" name="main" src="main.htm" height="100%" width="100%" marginwidth="0" marginheight="0" frameborder="0" scrolling="yes"></iframe>
+    </div>
+    
+    
+    <!-- <div class="clr"></div> -->
+</div>
+<#if firstModule gt 0>
+<script language="javascript">
+loadModule('${firstModule}');
+</script>
+</#if>
+<!--footer-->	
+<div id="bottom">
+    <dl>
+		<!-- <div class="logo-b"><img src="${base}/images/parox-logo-EN.png" /></div>
+		<div class="banq">版权所有  杭州道曼科技有限公司 @2012-2014</div>
+		<div class="link-bot ash5"><a href="https://www.parox.cn" target="_blank">Parox</a></div> -->
+		<div>版权所有  杭州道曼科技有限公司 @2012-2014</div>
+    </dl>
+</div>
+</div>
+<script language="javascript">
+/*
+var h = document.body.scrollHeight-131;
+alert(document.body.scrollHeight)
+document.all("navleft").style.height=h+"px";
+document.all("sleft").style.height=h+"px";
+document.all("sright").style.height=h+"px";
+*/
+</script>
+</body>
+</html>

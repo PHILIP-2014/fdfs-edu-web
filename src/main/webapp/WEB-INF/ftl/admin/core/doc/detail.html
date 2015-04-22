@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 文件管理 - 详情</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form labelWidth="10" >
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">ID：</td>
+<td width="35%" class="pn-fcontent">${doc.docId!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">文件名称：</td>
+<td width="35%" class="pn-fcontent">${doc.docName!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">版本号：</td>
+<td width="35%" class="pn-fcontent">${doc.nowVersion!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">存储类型：</td>
+<td width="35%" class="pn-fcontent">${doc.storageTypeId!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">文件大小：</td>
+<td width="35%" class="pn-fcontent">${doc.fileSize!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">文件后缀：</td>
+<td width="35%" class="pn-fcontent">${doc.suffix!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">空间ID：</td>
+<td width="35%" class="pn-fcontent">${doc.spaceId!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">任务ID：</td>
+<td width="35%" class="pn-fcontent">${doc.taskId!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">创建者：</td>
+<td width="35%" class="pn-fcontent">${doc.createUserId!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">共享次数：</td>
+<td width="35%" class="pn-fcontent">${doc.shareCount!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">创建时间：</td>
+<td width="35%" class="pn-fcontent">${(doc.createTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">编辑时间：</td>
+<td width="35%" class="pn-fcontent">${(doc.editTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<tr/>
+</@pj.form>
+</div>
+</body>
+</html>

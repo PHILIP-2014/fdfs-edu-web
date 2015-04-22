@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+<script type="text/javascript" src="${base}/js/core/parox-core-0.1.js"></script>
+<script type="text/javascript" src="${base}/js/system/init.area-v2.0.js"></script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 产品管理 - 升级查询</div>
+	<div class="clear"></div>
+</div>
+<@pj.form id="submitForm" labelWidth="10" onsubmit="PostCheckForm('doSearch.htm','submitForm');return false;" action="update">
+<tr><td class="pn-flabel pn-flabel-h">输入组织名称：</td>
+<td class="pn-fcontent">
+<input type="text" id="orgName" value="" name="orgName" size="40"/>
+<input type="hidden" id="orgId" name="orgId" value="" />
+<button type="button" onclick="SearchOrg()">查询组织</button></td></tr>
+
+<@option_list name='product_List'>
+<@pj.select list=tag_list listKey="id" listValue="name" colspan="1" width="50" label="升级目标产品" id="productId" name="productId" /><@pj.tr/>
+</@option_list>
+<tr><td class="pn-flabel pn-flabel-h"></td>
+<td class="pn-fcontent">
+<button type="button" onclick="DoSearch()">升级查询</button></td></tr>
+</@pj.form>
+</div>
+</body>
+<script type="text/javascript">
+function SearchOrg(){
+	var orgNameLike = document.getElementById("orgName").value;
+	var url = '${base}/admin/core/org/searchOrg.htm';
+	showMsgBox('搜索结果列表',url,{orgNameLike:orgNameLike},400);
+}
+function DoSearch(){
+	var orgId = document.getElementById("orgId").value;
+	var productId = document.getElementById("productId").value;
+	var url = '${base}/admin/core/product/doSearch.htm';
+	showMsgBox('搜索结果列表',url,{orgId:orgId,productId:productId},400);
+}
+</script>
+</html>

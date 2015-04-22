@@ -1,0 +1,41 @@
+<!--*创建项*-->
+<div class="modal-body clearfix">
+	<div class="col-md-8">
+	<form id="createSpaceForm">
+		<div class="form-group">
+			<label for="ct-organize">你需要在哪个组织下创建工作空间</label>
+			<select class="form-control" id="orgid-sel" name="orgId">
+				<#-- <option value="">选择你的组织</option> -->
+			<@join_org_list right=p.MemberRight.MANAGE>
+				<#list tag_list as o>
+				<option value="${o.orgId}"<#if orgId?? && orgId=o.orgId> selected</#if>>${o.orgName}</option>
+				</#list>
+			</@join_org_list>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="ct-workname">命名新的工作空间</label>
+			<input type="text" id="Input_spacename" name="name" class="form-control" required />
+		</div>
+		<div class="form-group">
+			<label>空间类型</label>
+			<div class="radio"> <label> <input type="radio" name="stype" value="0" checked /> 内部群组  </label>(与组织内部的同事协作) </div>
+			<div class="radio"> <label> <input type="radio" name="stype" value="1"> 外部网络  </label>(与组织以外的人合作) </div>
+			<label>开放设置 <span class="icon-question marg-20-t" title="操作有疑问？查看帮助:)"></span></label>
+			<div class="radio"> <label> <input type="radio" name="permission" value="1" checked/> 开放的  </label>(对所有组织成员可见并允许加入) </div>
+			<div class="radio"> <label> <input type="radio" name="permission" value="0"> 私有的  </label>(只能邀请加入新成员) </div>
+		</div>
+	</form>
+	</div>
+	<!--浏览已有空间-->
+	<div class="col-md-4 well"> 
+		<h5 class="h-weight">加入已有的工作空间？</h5>
+		<p> 搜寻已有的工作空间，并加入。<br /> <br /> <br /> <br /> </p>
+		<p class="text-right"> <a class="browse-space" href="javascript:;">浏览已有空间&rarr;</a> </p>
+	</div>
+</div>
+<!--*提交创建*-->
+<div class="modal-footer bd-t-un-style">
+	<button class="btn btn-success btn-addspace">创建并邀请</button> 
+	<button class="btn btn-default" data-dismiss="modal">取消</button> 
+</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+<style type="text/css">
+label.lerror{display:none;}
+</style>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统设置 - 功能权限 - 系统角色 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Tlist.jhtml';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form id="submitForm" onsubmit="PostCheckForm('Tsave.htm','submitForm');return false;" action="Tsave">
+<@pj.text size="40" label="角色名称" name="name" noValue="true"/>
+<@pj.textarea label="角色描述" name="description" noValue="true" cols="50" rows="5"/>
+
+<@pj.td label="拥有的功能">
+<#if funcRoot??>
+<@pj.tree root=funcRoot showDeep=2 isUrl=false isCheckBox=true checkBoxName="functionIds" childName="children" vld="{required:true}"/>
+</#if>
+</@pj.td><@pj.tr/>
+
+<@pj.td><@pj.submit value="保存" onclick="PostCheckForm('Tsave.htm','submitForm');return false;"/> &nbsp; <@pj.reset value="重置"/></@pj.td>
+</@pj.form>
+</div>
+</body>
+</html>

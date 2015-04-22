@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 产品管理 - 订购列表</div>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+组织名称：<input  type="text" name="orgName" value="${orgName!}"/>&nbsp;
+最后登录时间从:  <@pj.text name="finishStartTime" size="14"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>
+到<@pj.text name="finishEndTime" size="14"
+	onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+    class="Wdate"/>&nbsp;
+<input type="submit" value="搜索" />
+</form>
+
+<@p.grid
+  cols=[{"label":"组织ID","name":"row.orgId"},
+        {"label":"组织名称","name":"row.org.orgName"},
+        {"label":"用户ID","name":"row.userId"},
+        {"label":"产品","name":"(row.productId?string((row.productId=1)?string('商业版2500(5人250G)',(row.productId=2)?string('企业普通版4000(10人500G)','企业高级版8000(25人1T)'))))!"},
+        {"label":"服务周期(月)","name":"row.period"},
+        {"label":"收到时间","name":"(row.gmtApply?string('yyyy-MM-dd'))!"},
+        {"label":"开通时间","name":"(row.gmtStart?string('yyyy-MM-dd'))!"},
+        {"label":"过期时间","name":"(row.gmtEnd?string('yyyy-MM-dd'))!"}
+       ]
+  keyId="orgId" keyId2="orgId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/product/uPDetail","name":"<img src='"+base+"/images/admin/show.gif'>"},
+                 {"action":"/admin/core/product/uPEdit","name":"<img src='"+base+"/images/admin/edit.gif'>"},
+                 {"action":"/admin/core/product/uPDelete","type":"ajax","name":"<img src='"+base+"/images/admin/cancel.gif'>","confirm":"您确定禁止用户继续使用该产品吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/product/uPDelete","type":"ajax","name":"禁用","confirm":"您确定禁止该用户继续使用所选中的产品吗？"}
+               ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

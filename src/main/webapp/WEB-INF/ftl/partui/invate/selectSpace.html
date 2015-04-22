@@ -1,0 +1,32 @@
+<!--*创建项*-->
+<div class="modal-body clearfix">
+	<form role="form" class="clearfix">    	
+        <div class="form-group clearfix">
+        	<div><label>选择一个工作空间以添加这些成员</label></div>
+            <div class="padd-un col-md-4">
+                <select id="Select_spaceId" class="form-control">
+                <@org_space_list userId=_user.userId>
+                	<#list tag_list as o>
+                	<optgroup label="${o.orgName!}"></optgroup>                   
+	                    <#list o.spaces as s>
+	                    <option value="${s.spaceId}">&nbsp;&nbsp;${s.name}</option>
+	                    </#list>
+	                </#list>
+	            </@org_space_list>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="dropdown">
+                <label>或：</label>
+                <a class="add-space" href="javascript:;" role="button">新建工作空间</a>                
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--*提交项*-->
+<div class="modal-footer bd-un-style">
+	<button type="button" class="btn btn-success" data-datamiss="modal">下一步</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 产品管理 - 产品列表</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加产品" onclick="this.form.action='add.jhtml';"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+
+<@p.grid
+  cols=[{"label":"产品ID","name":"row.id"},
+        {"label":"分类标识","name":"row.categoryId"},
+        {"label":"产品编号","name":"row.productCode"},
+        {"label":"产品类型","name":"row.productType"},
+        {"label":"产品名称","name":"row.productName"},
+        {"label":"产品状态","name":"row.productStatus"},
+        {"label":"总数","name":"row.totalCount"},
+        {"label":"已售数","name":"row.soldCount"},
+        {"label":"库存数","name":"row.storageCount"},
+        {"label":"发布更新时间","name":"(row.gmtUpdate?string('yyyy-MM-dd'))!"},
+        {"label":"上架时间","name":"(row.gmtStart?string('yyyy-MM-dd'))!"},
+        {"label":"下架时间","name":"(row.gmtEnd?string('yyyy-MM-dd'))!"}
+       ]
+  keyId="id" keyId2="id" rowIndex=false
+  normalOperate=[{"action":"/admin/core/product/edit","name":"<img src='"+base+"/images/admin/edit.gif'>"},
+                 {"action":"/admin/core/product/delete","type":"ajax","name":"<img src='"+base+"/images/admin/delete.gif'>","confirm":"您确定删除该产品吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/product/delete","type":"ajax","name":"删除产品","confirm":"您确定删除所选中的产品吗？"}
+               ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

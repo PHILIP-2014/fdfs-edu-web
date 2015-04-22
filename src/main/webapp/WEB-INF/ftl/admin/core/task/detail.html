@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 任务管理 - 详情</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form labelWidth="10" >
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">任务ID：</td>
+<td width="35%" class="pn-fcontent">${task.taskId!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">所属空间ID：</td>
+<td width="35%" class="pn-fcontent">${task.spaceId!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">任务名称：</td>
+<td width="35%" class="pn-fcontent">${task.name!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">任务描述：</td>
+<td width="35%" class="pn-fcontent">${task.description!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">用户ID：</td>
+<td width="35%" class="pn-fcontent">${task.userId!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">用户名称：</td>
+<td width="35%" class="pn-fcontent">${userName!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">创建时间：</td>
+<td width="35%" class="pn-fcontent">${(task.createTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">最近更新时间：</td>
+<td width="35%" class="pn-fcontent">${(task.lastUpdateTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">开始时间：</td>
+<td width="35%" class="pn-fcontent">${(task.startTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">截止时间：</td>
+<td width="35%" class="pn-fcontent">${(task.endTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">完成时间：</td>
+<td width="35%" class="pn-fcontent">${(task.finishTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">归档时间：</td>
+<td width="35%" class="pn-fcontent">${(task.archiveTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">任务优先级：</td>
+<td width="35%" class="pn-fcontent"><#if task.priority = 0>普通<#else>紧急</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">任务标签：</td>
+<td width="35%" class="pn-fcontent">${task.labels!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">跟踪数：</td>
+<td width="35%" class="pn-fcontent">${task.followCount!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">评论数：</td>
+<td width="35%" class="pn-fcontent">${task.commentCount!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">任务状态：</td>
+<td width="35%" class="pn-fcontent"><#if task.status = 0>新建<#elseif task.status = 1>接收<#elseif task.status = 2>完成<#else>归档</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">是否禁用：</td>
+<td width="35%" class="pn-fcontent"><#if task.isDisabled = true>删除<#else>正常</#if></td>
+<tr/>
+</@pj.form>
+</div>
+</body>
+</html>

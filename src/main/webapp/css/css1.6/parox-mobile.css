@@ -1,0 +1,42 @@
+body{height: 100%; padding: 0; margin:0}
+.parox-mobile-home-warp{
+	background: #3c8dbc url(/images/images1.6/home/mobile-home.png) 20% bottom;
+	background-size:100%;
+	width: 100%;
+	height: 100%;
+	/*animation:myfirst 2s;
+	-moz-animation:myfirst 2s; *//* Firefox *//*
+	-webkit-animation:myfirst 2s; *//* Safari and Chrome *//*
+	-o-animation:myfirst 2s; /*/
+}
+
+/***animate***/
+/*@keyframes myfirst
+{
+	0%   {background-size: 90%;}
+	100% {background-size: 100%;}
+}
+
+@-moz-keyframes myfirst *//* Firefox *//*
+{
+	0%   {background-size: 90%;}
+	100% {background-size: 100%;}
+}
+
+@-webkit-keyframes myfirst *//* Safari 和 Chrome *//*
+{
+	0%   {background-size: 90%;}
+	100% {background-size: 100%;}
+}
+
+@-o-keyframes myfirst *//* Opera *//*
+{
+	0%   {background-size: 90%;}
+	100% {background-size: 100%;}
+}*/
+/***animate***/
+
+.mb-home-footer{ position:fixed; bottom: 5%; width: 100%;}
+.mb-home-footer a { display: block; width: 100px; height: 50px; line-height: 40px; font-size: 20px; }
+
+/* 工作空间 */

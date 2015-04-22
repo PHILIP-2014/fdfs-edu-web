@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<jmxConfigurator />
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date{yyyy-MM-dd hh:mm} %-5level %logger{10} - %msg%n</pattern>
+		</layout>
+	</appender>
+	<logger name="com.mhcms.cms.action.front">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="com.maihe.tianxia.admin.action.mjk">
+		<level value="info" />
+	</logger>
+	<logger name="com.mhcms.common.struts2">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="com.maihe">
+		<level value="info" />
+	</logger>
+	<logger name="com.ponyjava">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="WARN" />
+	</logger>
+	<logger name="org.hibernate.type">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="org.hibernate.cache">
+		<level value="ERROR" />
+	</logger>
+	<logger name="org.apache.struts2">
+		<level value="ERROR" />
+	</logger>
+	<logger name="com.opensymphony.xwork2">
+		<level value="ERROR" />
+	</logger>
+	<logger name="com.opensymphony.xwork2.ognl.OgnlValueStack">
+		<level value="ERROR" />
+	</logger>
+	<logger name="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor">
+		<level value="WARN" />
+	</logger>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>
+

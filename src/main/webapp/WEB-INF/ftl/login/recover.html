@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="系统登录">
+<meta name="author" content="Parox">
+<title>parox-找回密码</title> <@p.PublicResource css=['/parox-signin.css']
+/>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<form id="recoverForm" class="form-signin"
+			action="${base}/login/doSendVerify.htm" method="post"
+			data-remote="true" data-parsley-validate>
+			<div class="form-group col-xs-12 col-sm-9">
+				<label class="sr-only" for="emailMobile">Email address</label>
+				<!--<input id="emailMobile"  name="emailMobile" class="form-control" placeholder="请输入您的邮箱或者手机号" value="" required onkeyup="value=value.replace(/\s+/g,'');">-->
+				<input type='text' name="target" class="form-control" placeholder="请输入您的邮箱或者手机号" value="" />
+			</div>
+
+			<div class="form-group col-xs-12 col-sm-3">
+				<button type="submit" class="btn btn-success"
+					data-loading-text="正在提交...">找回密码</button>
+			</div>
+		</form>
+
+	</div>
+	<!--   <script type="text/javascript" src="${jsRoot}/core/plugin.validate.parsley.min.js"></script>
+    
+    <script type="text/javascript" src="${jsRoot}/core/plugin.validate.parsley.js"></script>
+   
+    <script type="text/javascript" src="${jsRoot}/core/plugin.validate.parsley.zh-CN.js"></script> -->
+
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			// TODO 验证输入的信息是否是系统用户
+		})
+	</script>
+</body>
+</html>

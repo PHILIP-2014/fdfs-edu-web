@@ -1,0 +1,18 @@
+<div>
+	<table class="table">
+		<tbody>
+			[#list userList as c] [#assign user_id=c.userId/]
+			<tr>
+				<td><a onclick="selectUser('${c.userId!}','${c.realName!}')" >${c.realName!} &nbsp &nbsp ${c.orgName!} &nbsp &nbsp ${c.deptName!}</a></td>
+			</tr>
+			[/#list]
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+function selectUser(userId,realName){
+	$("#box_msg").dialog("close");
+	document.getElementById("realName").value=realName;
+	document.getElementById("userId").value=userId;
+}
+</script>

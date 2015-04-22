@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统设置 - 功能菜单 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='list.jhtml?pid=${pid!}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form id="submitForm" onsubmit="PostCheckForm('ajax/save.htm','submitForm');return false;" action="Tsave">
+<@pj.td label="上级菜单">${(parent.name)!"顶级菜单"}</@pj.td><@pj.tr/>
+<@pj.text label="名称" name="name" noValue="true"/>
+<@pj.text label="URL" name="url" noValue="true" size="50"/>
+<@pj.radio label="URL类型" name="urlType" list={'1':'Action(不带后缀)','2':'其他'} value="1"/>
+<@pj.textarea label="功能集" name="funcs" noValue="true" cols="70" rows="12"/>
+<@pj.text label="描述" name="description" noValue="true" size="50"/>
+<@pj.text label="排列顺序" name="priority" value="100" help="从小到大"/>
+<@pj.radio label="菜单" name="isMenu" list={'true':'是','false':'否'} value="true"/>
+<@pj.td>
+<input type="hidden" name="parentId" value="${(parent.functionId)!}"/>
+<input type="hidden" name="pid" value="${(parent.functionId)!}"/>
+<input type="hidden" name="isActive" value="true"/>
+<@pj.submit value="保存" onclick="PostCheckForm('ajax/save.htm','submitForm');return false;"/> &nbsp; <@pj.reset value="重置"/></@pj.td>
+</@pj.form>
+</div>
+</body>
+</html>

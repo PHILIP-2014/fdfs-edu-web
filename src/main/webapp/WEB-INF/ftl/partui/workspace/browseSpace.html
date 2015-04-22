@@ -1,0 +1,26 @@
+<#if list?? && list?size gt 0>
+<form id="apply_space_form">
+<!--*创建项*-->
+<div class="modal-body padd-un-b">
+	<ul class="list-inline select-space marg-un-b">
+	<#list list as s>
+    	<li data-space-id="${s.spaceId!}"<#if s_index=0> class="list-first"</#if>>
+            <a href="javascript:;">
+	            <img src="${imgRoot}/avater-user-200X200.jpg" class="img-166X166 thumbnail"/>
+	            <p>${s.name}</p>
+            </a>
+        </li>
+	</#list>
+	</ul>
+</div>
+
+<!--*提交项*-->
+<div class="modal-footer marg-un-t bd-t-un-style">
+	<input id="Input_spaceId" type="hidden" name="spaceId"/>
+	<button type="button" class="btn btn-success" data-dismiss="modal">申请加入</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+</div>
+</form>
+<#else>
+没有可选的空间
+</#if>

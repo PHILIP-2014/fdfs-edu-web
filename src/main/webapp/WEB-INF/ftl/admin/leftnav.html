@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Parox—后台-菜单</title>
+[@p.Include page="admin.ftl"/]
+<SCRIPT>
+function swapMenu(mitem){
+	var mitems = document.getElementsByName("ms");
+	for(var i = 0; i < mitems.length; i++){
+	mitems[i].className="tabs-out";
+	}
+	mitem.className="tabs-over";
+	}
+</SCRIPT>
+<SCRIPT language=javascript type=text/javascript>
+    $(function() {
+        var currCatalogID = 'subItem_';
+        if (document.getElementById(currCatalogID) == null) {
+            currCatalogID = 'item0';
+            $("#" + currCatalogID).removeClass("collapse").addClass("expand");
+        }
+        else {
+            $("#" + currCatalogID).parent().parent().removeClass("collapse").addClass("expand");
+            $("#" + currCatalogID + " > a").addClass("Selected");
+        }
+    })
+    function Expand(obj) {
+        $("#treeul > li").removeClass("expand").addClass("collapse");
+        $(obj).parent().removeClass("collapse").addClass("expand");
+    }
+    function Select(obj) {
+    	$("dd").removeClass("on");
+    	$(obj).parent().addClass("on");
+    }
+   
+</SCRIPT>
+</head>
+
+<body>
+	<div id="navleft" class="navleft">
+		<UL id=treeul>
+			[#list menus as m1]
+	          <LI class=collapse id=item${m1_index}><A class=title onclick=Expand(this) href="javascript:;">${m1.name}</A>
+	              <DL>
+	              	[#list m1.children as m2]
+	              	[#if m2.isMenu && rights?seq_contains(m2.url)]
+	                    <DD id=subItem${m1_index}_${m2_index}><A href="${base+m2.webUrl}" onclick=Select(this) target="main">${m2.name}</A></DD> 
+	                [/#if]
+	                [/#list]
+	              </DL>
+	              <div class="l-line"></div>
+	          </LI>	        
+	        [/#list]
+	      </UL>
+	  </div>
+</body>
+</html>

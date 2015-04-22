@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<script type="text/javascript">
+$(function() {
+	var status = ${status!};
+	if(status != null){
+		document.getElementById("status").value=status;
+	}
+})
+</script>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统设置 - 系统用户管理 - 列表</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加用户" onclick="this.form.action='add.jhtml';"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+真实姓名：<input  type="text" name="realName" size="14" value="${realName!}"/>&nbsp;
+组织名称：<input  type="text" name="orgName" size="14" value="${orgName!}"/>&nbsp;
+email：<input type="text" name="email" value="${email!}"/>&nbsp;
+手机：<input type="text" name="mobile" size="14" value="${mobile!}"/>&nbsp;
+最后登录IP：<input  type="text" name="lastIp" value="${lastIp!}"/><br/>
+最后登录时间从: <@pj.text name="lastLoginStartTime" size="14"	
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>&nbsp;
+到 <@pj.text name="lastLoginEndTime" size="14"
+	onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+    class="Wdate"/>&nbsp;
+状态: <select name="status" id="status">
+        <option value=""></option>
+		<option value="0">未激活</option>
+		<option value="1">正常</option>
+		<option value="2">禁用</option>
+	</select>
+<input type="submit" value="搜索" />
+</form>
+
+<@p.grid
+  cols=[{"label":"ID","name":"row.userId"},
+        {"label":"真实姓名","name":"row.realName"},
+        {"label":"所属组织","name":"(row.orgName+'('+row.orgId+')')!"},
+        {"label":"Email","name":"row.email"},
+        {"label":"手机","name":"row.mobile"},
+        {"label":"登录次数","name":"row.loginCount"},
+        {"label":"注册时间","name":"(row.createTime?string('yyyy-MM-dd'))!"},
+        {"label":"在线状态","name":"(row.online=true)?string('<span style=\"color:green;\">在线</span>','<span style=\"color:grey;\">离线</span>')", "escape":false},
+        {"label":"最后登录时间","name":"(row.lastLoginTime?string('yyyy-MM-dd HH:mm'))!"},
+        {"label":"最后登录IP","name":"row.lastIp"},
+        {"label":"状态","name":"(row.status=2)?string('<span style=\"color:red;\">停用</span>',(row.status=1)?string('<span style=\"color:green;\">正常</span>','未激活'))", "escape":false}
+       ]
+  keyId="userId" keyId2="userId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/user/detail","name":"<img src='"+base+"/images/admin/show.gif'>"},
+                 {"action":"/admin/core/user/ajax/activate","type":"ajax","name":"<img src='"+base+"/images/admin/ok.gif'>","confirm":"您确定重新启用该用户吗？"},
+                 {"action":"/admin/core/user/ajax/disable","type":"ajax","name":"<img src='"+base+"/images/admin/cancel.gif'>","confirm":"您确定禁用该用户吗？"},
+                 {"action":"/admin/core/user/ajax/delete","type":"ajax","name":"<img src='"+base+"/images/admin/delete.gif'>","confirm":"您确定删除该用户吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/user/ajax/disable","type":"ajax","name":"停用账户","confirm":"您确定停用所选的账户吗？"},
+  				{"action":"/admin/core/user/ajax/activate","type":"ajax","name":"启用账户","confirm":"您确定启用所选的账户吗？"},
+  				{"action":"/admin/core/user/ajax/delete","type":"ajax","name":"删除账户","confirm":"您确定删除所选的账户吗？"}
+               ]
+  keepParams=[
+			  {"name":"returnPage","value":"pageNo"},
+			  {"name":"email","encode":false},
+			  {"name":"mobile","encode":false},
+			  {"name":"lastIp","encode":false},
+			  {"name":"lastLoginStartTime","encode":false},
+			  {"name":"lastLoginEndTime","encode":false},
+			  {"name":"realName","encode":true},
+			  {"name":"orgName","encode":true},
+			  {"name":"status","encode":false}
+  			 ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

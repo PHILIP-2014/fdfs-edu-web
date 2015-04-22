@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 订单管理 - 订单详情</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+<@pj.form id="submitForm" labelWidth="10">
+<tr><td width="10%" class="pn-flabel pn-flabel-h">组织名称：</td>
+<td width="40%" class="pn-fcontent">${org.orgName!}</td>
+<td width="10%" class="pn-flabel pn-flabel-h">组织ID：</td>
+<td width="40%" class="pn-fcontent">${order.orgId!}</td><tr/>
+<tr><td width="10%" class="pn-flabel pn-flabel-h">用户实名：</td>
+<td width="40%" class="pn-fcontent">${user.realName!}</td>
+<td width="10%" class="pn-flabel pn-flabel-h">用户ID：</td>
+<td width="40%" class="pn-fcontent">${order.userId!}</td><tr/>
+<tr><td width="10%" class="pn-flabel pn-flabel-h">所在部门：</td>
+<td width="40%" class="pn-fcontent">${user.deptName!}</td>
+<td width="10%" class="pn-flabel pn-flabel-h">联系方式：</td>
+<td width="40%" class="pn-fcontent">${user.mobile!}</td><tr/>
+<tr><td width="10%" class="pn-flabel pn-flabel-h">支付方式：</td>
+<td width="40%" class="pn-fcontent"><#if order.paymentType = 0>网银支付<#else>线下支付</#if></td>
+<td width="10%" class="pn-flabel pn-flabel-h">支付渠道：</td>
+<td width="40%" class="pn-fcontent"><#if order.paymentChannel = 101>支付宝<#else>其他</#if></td><tr/>
+<tr><td width="10%" class="pn-flabel pn-flabel-h">产品：</td>
+<td width="40%" class="pn-fcontent"><#if product = 1>商业版2500(5人250G)<#elseif product = 2>企业普通版4000(10人500G)<#else>企业高级版8000(25人1T)</#if></td>
+<td width="10%" class="pn-flabel pn-flabel-h">支付总额：</td>
+<td width="40%" class="pn-fcontent">${order.totalFee!}</td><tr/>
+
+<tr><td width="10%" class="pn-flabel pn-flabel-h"></td>
+<td width="40%" class="pn-fcontent"></td>
+<td width="10%" class="pn-flabel pn-flabel-h"></td>
+<td width="40%" class="pn-fcontent"></td><tr/>
+
+<tr><td width="10%" class="pn-flabel pn-flabel-h">姓名：</td>
+<td width="40%" class="pn-fcontent">${order.name!}</td>
+<td width="10%" class="pn-flabel pn-flabel-h">手机：</td>
+<td width="40%" class="pn-fcontent">${order.mobile!}</td><tr/>
+<tr><td width="10%" class="pn-flabel pn-flabel-h">省份：</td>
+<td width="40%" class="pn-fcontent">${province!}</td>
+<td width="10%" class="pn-flabel pn-flabel-h">城市：</td>
+<td width="40%" class="pn-fcontent">${city!}</td><tr/>
+<tr><td width="10%" class="pn-flabel pn-flabel-h">详细地址：</td>
+<td width="40%" class="pn-fcontent">${order.address!}</td>
+<td width="10%" class="pn-flabel pn-flabel-h">邮编：</td>
+<td width="40%" class="pn-fcontent">${order.zipcode!}</td><tr/>
+</@pj.form>
+</div>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8" />
+	<title>道曼派乐|Parox-云在线工作协同,分享快速,工作超越-首页</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="道曼派乐是全新的企业协同云平台，让你与你的团队以前所未有的方式开展工作，用户可以建立工作空间，与特定的人或组织开展合作，可以将文档、任务、目标、项目、日程日历等关于工作的信息，连同工作相关的人像社交网络那样组织在一起。派乐使得我们能够更加清晰地了解任务的规模、进度以及人员状态，让我们回归工作的本质要求：高效便捷地获取资源。" />
+	<meta name="keywords" content="道曼派乐,Parox,在线工作,开放,协作,协同,资源,平台,云存储,文件,管理,分享,任务分配,评价,日程管理,工作日历,沟通,云工作平台" />
+	<meta name="author" content="www.parox.cn|道曼派乐" />
+	<meta name="application-name" content="www.parox.cn" />
+	<link rel="shortcut icon" href="http://www.parox.cn/images/favicon.ico">
+	<link rel="stylesheet" href="css/css1.7/bootstrap.css" media="screen">
+	<link rel="stylesheet" href="css/css1.7/parox-base.css" media="screen">
+	<link rel="stylesheet" href="css/css1.7/pre2-parox-home.css?v20150330" media="screen">
+    <script src="/js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/core/ajax.js"></script>
+	<script src="/js/lib/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    	<script src="../js/compatibility/ie8-responsive-file-warning.js"></script>
+    	<script src="../js/compatibility/html5shiv.min.js"></script>
+    	<script src="../js/compatibility/respond.js"></script>
+    <![endif]-->
+    
+    <script>
+	//百度统计
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?7adf4f36aac22b99b592f1d2fa497c81";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+
+<body id="parox-home">
+	<div>
+		<!-- nav -->
+		<nav class="navbar navbar-fixed-top parox-nav">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-togge="collapse" data-target="#parox-nav">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand parox-nav-logo" href="http://www.parox.cn">
+						<img src="images/images1.7/parox-home-logo.png" alt="www.parox.cn"/>
+					</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="parox-nav">
+					<ul class="nav navbar-nav parox-nav-channel">
+						<li class="active"><a href="index.html">首页</a></li>
+						<li><a href="product.html">产品</a></li>
+					</ul>
+
+					<div class="nav navbar-nav navbar-right">
+						<a href="/login.htm" class="parox-nav-login">登录</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<!-- body -->
+		<div class="parox-home">
+			<!-- jumbotron -->
+			<diV class="jumbotron">
+				<div class="container text-center col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+					<!-- register -->
+					<div class="register" id="p-register">
+                    	<img src="images/images1.7/hdu_logo.png">
+                        <div class="container register-block" id="index-register">
+                            <!--<h2 class="title">开始使用</h2>-->
+                            <form class="row" action="javascript:;" role="form" method="post" data-remote="true" id="registerForm" onsubmit="return false;">
+                                <div class="col-md-12">
+                                    <input id="userName" name="userName" type="text" placeholder="用户名" data-behavior="register-input" data-type="email" autocomplete="off" class="form-control bdr-un"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <input id="password" name="password" type="password" placeholder="密码至少6位，包含字母与数字" data-behavior="register-input" data-type="password" autocomplete="off" class="form-control bdr-un"/>
+                                     <!--<input type="checkbox"  data-behavior="show-password" />
+                                            <span class="text-help">显示密码</span>-->
+                                </div>
+                                <div class="col-md-12 p-msg hidden">
+									<p class="error-box"></p>
+								</div>
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-primary btn-lg" value="登录" />
+                                </div>
+                                <div class="checkbox col-md-12 text-left">
+                                    <label>
+                                      <input type="checkbox"  id="remember_me" name="remember" type="checkbox" value="1" class="pull-left select"> 自动登录
+                                    </label>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<!-- action -->
+            <!--
+			<div class="actions">
+				<div class="container">
+					<div class="col-md-4 text-center">
+						<a href="1.7help.html" class="action guide fadeIn">
+							<img src="images/images1.7/parox-action-guide.png" />
+							<div class="text">
+								<h2 class="title guide">如何使用派乐？</h2>
+								<p class="desc">看一下视频，马上就会用！</p>
+							</div>
+							<i class="button btn-arrow-right"></i>
+						</a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="javascript:void(0);" class="action video fadeIn">
+							<img src="images/images1.7/parox-action-video.png" />
+							<div class="text">
+								<h2 class="title video">产品概念</h2>
+							</div>
+							<i class="button btn-play-white"></i>
+						</a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="1.7helpbook.html" class="action help fadeIn">
+							<img src="images/images1.7/parox-action-help.png" />
+							<div class="text">
+								<h2 class="title help">帮助手册</h2>
+								<p class="desc">快速熟悉派乐，用前必读！</p>
+							</div>
+							<i class="button btn-arrow-right"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+            -->
+			<!-- features -->
+			<div class="features">
+				<div class="container">
+					<h2 class="title fadeIn">工作相关的都在这里</h2>
+					<i class="short-line"></i>
+					<ul class="feature-list clearfix">
+						<li>
+							<div class="wrap fadeIn">
+								<div class="content">
+									<i class="icon icon-pc"></i>
+									<h3 class="title">工作平台</h3>
+									<p class="desc">基于云计算构建 简单/快速/安全/强大的协作平台</p>
+								</div>
+								<div class="shade">
+									<!--<button type="button" class="btn btn-block">看下视频</button>-->
+									<a href="product.html">了解功能</a>
+								</div>
+							</div>
+						</li>
+                        <!--
+						<li>
+							<div class="wrap fadeIn">
+								<div class="content">
+									<i class="icon icon-chat"></i>
+									<h3 class="title">随时沟通</h3>
+									<p class="desc">跨平台、跨时段、跨组织、团队随时沟通</p>
+								</div>
+								<div class="shade">
+									<button type="button" class="btn btn-block">看下视频</button>
+									<a href="javascript:void(0);">了解功能</a>
+								</div>
+							</div>
+						</li>
+                        -->
+						<li>
+							<div class="wrap fadeIn">
+								<div class="content">
+									<i class="icon icon-task"></i>
+									<h3 class="title">任务管理</h3>
+									<p class="desc">工作任务进行计划、重要性排序、提醒和进度跟踪</p>
+								</div>
+								<div class="shade">
+									<!--<button type="button" class="btn btn-block">看下视频</button>-->
+									<a href="product.html#task">了解功能</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="wrap fadeIn">
+								<div class="content">
+									<i class="icon icon-calendar"></i>
+									<h3 class="title">团队日历</h3>
+									<p class="desc">工作时刻保持同步、团队成员即时协同、简单高效</p>
+								</div>
+								<div class="shade">
+									<!--<button type="button" class="btn btn-block">看下视频</button>-->
+									<a href="product.html#calendar">了解功能</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="wrap fadeIn">
+								<div class="content">
+									<i class="icon icon-file"></i>
+									<h3 class="title">文档管理</h3>
+									<p class="desc">1G免费企业级云盘，兼容多文件格式，高效分享预览</p>
+								</div>
+								<div class="shade ">
+									<!--<button type="button" class="btn btn-block">看下视频</button>-->
+									<a href="product.html#folder">了解功能</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- partners -->
+            <!--
+			<div class="partners">
+				<div class="container">
+					<h2 class="title pull-left">合作伙伴</h2>
+					<ul>
+						<li><img src="images/images1.7/partner-01.png" /></li>
+						<li><img src="images/images1.7/partner-02.png" /></li>
+						<li><img src="images/images1.7/partner-03.png" /></li>
+						<li><img src="images/images1.7/partner-04.png" /></li>
+						<li><img src="images/images1.7/partner-05.png" /></li>
+						<li><img src="images/images1.7/partner-06.png" /></li>
+						<li><img src="images/images1.7/partner-07.png" /></li>
+						<li><img src="images/images1.7/partner-08.png" /></li>
+						<li><img src="images/images1.7/partner-09.png" /></li>
+						<li><img src="images/images1.7/partner-10.png" /></li>
+					</ul>
+				</div>
+			</div>
+            -->
+			<!-- security -->
+			<!--
+            <div class="security">
+				<div class="container">
+					<h2 class="title">派乐-企业的数据安全中心</h2>
+					<p class="desc">我们知道，安全是您的优先级。这也是我们的优先的事项。<br/>我们使用先进的安全技术来保护您的公司网络的数据。</p>
+					<a href="security.html">
+						<i class="button btn-arrow-right pull-right"></i>
+					</a>
+				</div>
+			</div>
+            -->
+			
+		</div>
+
+		<!-- footer -->
+		<footer>
+			<div class="parox-footer">
+				<div class="container">
+					<div class="col-md-3 col-sm-3 col-xs-6">
+						<h2 class="title">产品</h2>
+						<ul>
+							<li><a href="product.html">产品概览</a></li>
+							<li><a href="privacy.html">隐私服务</a></li>
+							<li><a href="service.html">服务条款</a></li>
+							<li><a href="security.html">数据安全</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-6">
+						<h2 class="title">公司</h2>
+						<ul>
+							<li><a href="about.html">关于派乐</a></li>
+							<li><a href="hire.html">加入我们</a></li>
+							<li><a href="agent.html">代理合作</a></li>
+							<li><a href="link.html">联系我们</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-6">
+						<h2 class="title">关注我们</h2>
+						<ul>
+							<li><a href="http://www.weibo.com/parox/home" target="_blank"><i class="icon-weibo"></i>微博</a></li>
+							<li class="p-relative">
+                            	<a href="javascript:void(0);" class="weixin">
+                                    <i class="icon-weixin"></i>微信
+                                    <div class="wechat">
+                                        <img src="images/images1.6/home/weixin-getqrcode.jpg">
+                                        <div class="text-center">扫一扫 &nbsp; 关注派乐公众号</div>
+                                    </div>
+                                </a>
+                            </li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-6">
+						<h2 class="title">联系信息</h2>
+						<ul>
+							<li><a href="javascript:void(0);" class="cur-de">浙江省杭州市滨江区南环路3730号源越大厦606-607室</a></li>
+							<li><a href="javascript:void(0);" class="cur-de">400-990-1131 0571-85870895</a></li>
+							<li><a href="javascript:void(0);" class="cur-de">0571-28063081</a></li>
+							<li><a href="javascript:void(0);" class="cur-de">support@parox.cn</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- copyright -->
+			<div class="copyright">
+				<p>Copyright &copy; 2014-2015 杭州道曼科技有限公司 浙ICP备13020598号-1 浙B2-20140274 </p>
+			</div>
+		</footer>
+	</div>
+	<div id="topcontrol">
+		<i></i>
+	</div>
+    
+    
+    <script>
+		$(document).ready(function(e) {
+			//the browser adapt
+			var userAgent = navigator.userAgent.toLowerCase();
+			var _system   = window.navigator.userAgent;
+			jQuery.browser = {
+				version: (userAgent.match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [])[1],
+				safari: /webkit/.test( userAgent ),
+				opera: /opera/.test( userAgent ),
+				msie: /msie/.test( userAgent ) && !/opera/.test( userAgent ),
+				mozilla: /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent ),
+				Url:'/browser.html'
+			};
+			var _tation=($.browser.safari&& $.browser.version<=500)||($.browser.msie&& $.browser.version<8.0)||($.browser.mozilla && $.browser.version<24.0&& $.browser.version!=11)||($.browser.opera && $.browser.version<11.5);
+			if (_tation) {
+				alert('您的浏览器版本过低，请升级版本');
+				window.location.href = $.browser.Url;
+				if (_system.indexOf('Windows NT 5') > -1) {//xp system
+					$('.ie').attr('href', 'http://rj.baidu.com/soft/detail/23253.html?ald');
+				}
+	
+			}
+			if($.browser.msie && $.browser.version<10.0){//ie 8底下的input框
+				$('label[for="emailMobile"]').css({width:"100%",height:"56px",clip:"auto","text-align":"left","text-indent":"20px",color:"#999","line-height":"56px"});
+				$('#emailMobile').on('click', function () {
+					$('label[for="emailMobile"]').css({width:"1",height:"1px",color:"#fff",clip:"rect(0, 0, 0, 0)"});
+				});
+				$('#emailMobile').on('blur', function () {
+					if($(this).val()==0){
+						$('label[for="emailMobile"]').css({width:"100%",height:"56px",clip:"auto","text-align":"left","text-indent":"20px",color:"#999","line-height":"56px"});
+					}
+				});
+			}
+	
+			
+			//the system adapt
+			var system = {
+				win: false,
+				mac: false,
+				xll: false,
+				ipad:false
+			};
+			var p = navigator.platform;
+			system.win = p.indexOf("Win") == 0;
+			system.mac = p.indexOf("Mac") == 0;
+			system.xll = (p == "X11") || (p.indexOf("Linux") == 0);
+			system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+			if (system.win || system.mac || system.xll||system.ipad||system.Linux) {
+	
+			} else {
+				window.location.href = "/mobile.html";
+			}
+			
+			/* convert img to gray */
+			
+			$('input.btn-lg').click(function(){
+	   			var userName = $('#userName').val();
+	   			var pwd = $('#password').val();
+	   			var remember = $('#remember_me').prop("checked");
+	   			AjaxPost('/login/validate.htm',{loginName:userName,password:pwd,remember:remember?"1":""},function callback(data){
+	   				if(data.success){
+	   					location.href=data.url;
+	   				}else{
+	   					$('.error-box').text(data.message);
+	   					$('.p-msg').removeClass('hidden');
+	   				}
+	   			});
+	   		});
+		});
+	
+	</script>
+	<!-- 
+    <script type="text/javascript" src="/js/lib/seajs/sea.js" id="seajsnode"></script>
+	<script type="text/javascript" src="/js/sea.config.js"></script>
+    <script type="text/javascript">
+        //调用入口文件及相关bootstrap插件
+        seajs.use(['views/register/view.register.index','parox','jquery','config','bootstrap']);
+    </script>
+     -->
+</body>
+</html>
+
+

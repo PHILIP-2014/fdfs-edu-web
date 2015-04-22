@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="系统登录">
+    <meta name="author" content="Parox">
+    <link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
+
+    <title>parox-登录</title>
+	<@p.PublicResource 
+        	css=['/parox-signin.css']
+        />   
+  </head>
+
+  <body>
+<#if style?? && style='mini'>
+    <div class="container">
+
+      <form class="form-signin" action="${base}/login/" method="post" data-remote="true">
+      	<input type="hidden" name="style" value="${style!}">
+      	<input type="hidden" name="processUrl" value="${processUrl!}">
+      	<input type="hidden" name="returnUrl" value="${returnUrl!}">
+        
+        <input name="username" type="text" class="form-control" placeholder="邮箱/用户名" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="密码" required>
+        
+        <label class="checkbox">
+          <input checked="checked" id="remember_me" name="remember" type="checkbox" value="1"> 
+          <label for="remember_me" class="remember-me">保持登录状态</label>
+          
+          <a href="${base}/login/recover.htm" >忘记密码？</a>
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      </form>
+
+    </div>
+     <!-- /container -->
+<#else>
+    <div class="container">
+
+      <form class="form-signin" action="${base}/login/" method="post" data-remote="true">
+      	<input type="hidden" name="processUrl" value="${processUrl!}">
+      	<input type="hidden" name="returnUrl" value="${returnUrl!}">
+        <h2 class="form-signin-heading">请登录</h2>
+        
+	      <!-- 临时添加  注册链接  start -->
+	      <a style="position:relative;left:265px;top:-35px;z-index:999;" href="${base}/register/register.htm">注册</a>
+	      <!-- 临时添加  注册链接  end -->
+        <input name="username" type="text" class="form-control" placeholder="邮箱/用户名" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="密码" required>
+        
+        <label class="checkbox">
+          <input checked="checked" id="remember_me" name="remember" type="checkbox" value="1"> 
+          <label for="remember_me" class="remember-me">保持登录状态</label>
+          
+          <a href="${base}/login/recover.htm" >忘记密码？</a>
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      </form>
+
+    </div>
+     <!-- /container -->
+</#if>
+
+  <#if message??>
+	<div style="color:red">
+	<#if message=="true">您必须登录后才能继续刚才的操作
+    <#else>${message}
+    </#if>
+    </div>
+  <input type="hidden" name="message" value="${message}"/>
+  </#if>
+  <#if errors??>
+	<ul>
+	<#list errors as error><li>${error}</li></#list>
+	</ul>
+  </#if>
+
+  <#--@process_time/-->
+</body>
+</html>

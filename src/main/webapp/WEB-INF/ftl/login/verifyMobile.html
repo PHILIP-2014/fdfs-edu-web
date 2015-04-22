@@ -1,0 +1,115 @@
+<!--@hetao-2014/01/24--->
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="parox-注册-发送邮件">
+<meta name="author" content="Parox">
+
+<@p.PublicResource/>
+<title>parox-注册-手机验证</title>
+</head>
+
+<body>
+	<@p.Include page='base_header.ftl' />
+		<!--login check-->
+		<div class="center-block reg-block clearfix padd-30-b">
+			<!--logo-->
+			<img src="${imgRoot}/bg-reg-mobile.png" class="center-block reg-logo" />
+			<p class="font15 marg-30-b">我们已经向您填写的手机发送了验证码,请填写收到的验证码。</p>
+
+			<form id="mobileActiveForm" name="mobileActiveForm" role="form" action="${base}/login/doVerify.htm" method="get" class="form-inline"  onclick="doreset()">
+				<!--logo-->
+				<div class="form-group">
+					<input id="mobile" name="mobile" type="hidden" value="${mobile}">
+					<input id="verifyCode" name="verifyCode" type="verifyCode" class="form-control" placeholder="手机验证码">
+					<button type="submit" class="btn btn-primary form-control" id="mobileVerifyBtn">填写好了</button>
+				</div>
+				<!-- <div class="form-group">
+					
+				</div> -->
+				<div class="form-group">
+					<input id="resendBtn" type="button" class="btn btn-danger form-control" disabled="disabled" value="还剩60秒" />
+				</div>
+			</form>
+			</p>
+		</div>
+		<!--login check-->
+		<script type="text/javascript">
+ 		/* function(){
+			
+		}  */
+		
+			jQuery(document).ready(function(){
+				//AJAX 认证验证码
+				
+				jQuery("#mobileActiveForm").submit(function(){
+					if(jQuery("#verifyCode").val()==""){
+						//TODO message 提示框
+						alert("请填写验证码");
+						return false;
+					}
+					
+					/* var data = {
+							mobile:jQuery("#mobile").val(),
+							verifyCode:jQuery("#verifyCode").val()
+					}
+					
+					 AjaxPost("${base}/login/doVerify.htm", data, function(response){
+		    			// TODO 处理当前文件夹DOM，隐藏
+		    			if(response.success){
+		    				window.location.href="${base}/login/reset.htm";
+		    			}else{
+		    				alert("验证码填写错误");
+		    			}
+		    		});  */
+					
+					return true;
+				});
+				
+				var time = 6;
+				setInterval(function(){
+					if(time<=0){
+						jQuery("#resendBtn").val("重新发送");
+						jQuery("#resendBtn").attr("disabled",false);
+						return false;
+					}
+					time=time-1;
+					jQuery("#resendBtn").val("还剩"+time+"秒");
+				}, 1000);
+				
+				jQuery("#resendBtn").click(function(){
+					var data = {target:jQuery("#mobile").val()};
+					AjaxPost("${base}/login/ajax/doResendMobileVerify.htm", data, function(response){
+		    			// TODO 处理当前文件夹DOM，隐藏
+		    			if(response.success){
+		    				time=60;
+		    				jQuery("#resendBtn").attr("disabled",true);
+		    				jQuery("#resendBtn").val("还剩"+time+"秒");
+		    			}
+		    		});
+				});
+			});
+		</script>
+		
+	</div>
+	<!--/container -->
+
+
+	<!--footer-->
+	<footer class="panel-footer footer bd-un-style">
+		<div class="col-lg-12">
+			<p class="text-center colorGray-99">
+				<a href="#" target="_blank" class="lnk-gray">关于Parox</a> <a href="#"
+					target="_blank" class="lnk-gray">· 条款</a> <a href="#"
+					target="_blank" class="lnk-gray">· 隐私政策</a> <span>Copyrigt
+					&copy; 2014 Parox.All Reserved</span>
+			</p>
+	</footer>
+	<!--/footer-->
+
+</body>
+</html>

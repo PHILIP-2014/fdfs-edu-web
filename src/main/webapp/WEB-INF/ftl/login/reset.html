@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="系统登录">
+    <meta name="author" content="Parox">
+    <link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
+    <title>parox-找回密码</title>
+	<@p.PublicResource/>
+</head>
+<body>
+
+<#if result?? && result>
+	密码修改成功，<a href="${base}/login/login.htm" >马上登录</a>
+<#else>
+	<#if result?? && !result>
+		密码修改失败，请重新设置！
+	</#if>
+<div class="container">
+<div class="row">
+	<div class="col-xs-offset-3 col-xs-4">
+		<form class="form-horizontal" role="form" action="${base}/login/doReset.htm" method="post">
+  <div class="form-group">
+    <label class="col-sm-4 control-label">新密码</label>
+    <div class="col-sm-8">
+    	<input type="password" name="password" class="form-control" placeholder="//TODO password" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">密码确认</label>
+    <div class="col-sm-8">
+    <input type="password" name="passwordConfirm" class="form-control" placeholder="//TODO password confirm" />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <input type="submit" class="btn btn-primary form-control" value="确认修改" />
+    </div>
+  </div>
+  <input type="hidden" name="recoverId" value="${recoverId!}" />
+</form>
+
+	</div>
+</div>
+
+</div>
+
+</#if>
+</body>
+</html>

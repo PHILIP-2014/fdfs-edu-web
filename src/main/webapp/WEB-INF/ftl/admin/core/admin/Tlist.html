@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 基础设置 - 基础设置 - 管理员管理 - 列表</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加新的管理员" onclick="this.form.action='Tadd.jhtml';"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+
+<@p.grid
+  cols=[{"label":"管理员ID","name":"row.adminId"},
+        {"label":"用户","name":"(row.user.realName+'('+row.userId+')')!"},
+        {"label":"创建时间","name":"(row.createTime?string('yyyy-MM-dd hh:mm'))!"},
+        {"label":"最近登录时间","name":"(row.loginTime?string('yyyy-MM-dd hh:mm'))!"},
+        {"label":"总登陆次数","name":"row.loginCount"},
+        {"label":"状态","name":"(row.isDisabled=false)?string('<span style=\"color:green;\">正常</span>','<span style=\"color:red;\">禁用</span>')","escape":false}
+       ]
+  keyId="adminId" keyId2="adminId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/admin/Tedit","name":"<img src='"+base+"/images/admin/edit.gif'>"},
+				 {"action":"/admin/core/admin/Tactivate","type":"ajax","name":"<img src='"+base+"/images/admin/ok.gif'>","confirm":"您确定重新启用该管理员账号吗？"},
+				 {"action":"/admin/core/admin/Tdisable","type":"ajax","name":"<img src='"+base+"/images/admin/cancel.gif'>","confirm":"您确定禁用该管理员账号吗？"},
+                 {"action":"/admin/core/admin/Tdelete","type":"ajax","name":"<img src='"+base+"/images/admin/delete.gif'>","confirm":"您确定删除该管理员账号吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/admin/Tdelete","type":"ajax","name":"删除管理员","confirm":"您确定删除所选中的管理员账号吗？"}
+               ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

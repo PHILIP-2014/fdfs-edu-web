@@ -1,0 +1,49 @@
+<!--*创建项*-->
+<div class="modal-body clearfix">
+	<form role="form" class="clearfix">
+		<input type="hidden" id="Input_orgId" name="orgId" value="${orgId!0}">
+        <div class="form-group">
+        	<label for="inputEmail">电子邮件</label>
+            <input class="form-control" id="Input_email" type="email" placeholder="Email">
+        </div>
+        <div class="form-group clearfix">
+        	<div>
+        		<input id="Cbx_add_space" type="checkbox">
+        		<label>为用户选择一个工作空间</label>
+        	</div>
+            <div class="padd-un col-md-4 show-tag hidden">
+                <select id="Input_spaceId" class="form-control">
+                <@space_list orgId=orgId>
+                <#list tag_list as s>
+                    <option value="${s.spaceId}"<#if _user.defaultSpaceId?? && _user.defaultSpaceId=s.spaceId> selected</#if>>${s.name}</option>
+                </#list>
+                </@space_list>
+                </select>
+            </div>
+        </div>
+        <div class="form-group show-tag hidden">
+            <div class="dropdown">
+                <label>角色：</label>
+                <a id="J_role" data-toggle="dropdown" href="#" role="button">
+                    <span class="role-name">普通会员</span><span class="caret"></span>
+                </a>
+                <input type="hidden" id="Input_roleType" name="roleType" value="${p.SpaceRole.COMMON}">
+                <ul id="J_role_options" class="dropdown-menu padd-un-b" role="menu" aria-labelledby="drop1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-item="${p.SpaceRole.MANAGE}">空间管理员</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-item="${p.SpaceRole.COMMON}">普通会员</a></li>
+                    <li role="presentation"  class="marg-5-t">
+                        <div class="panel-footer bgGray-f5 clearfix">
+                            <p class="pull-left"><a href="#" target="_blank">角色详情</a></p>
+                            <button class="btn btn-primary btn-sm pull-right">升级</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--*提交项*-->
+<div class="modal-footer bd-un-style">
+	<button id="Btn_add_member" class="btn btn-success" type="button" data-datamiss="modal">添加</button>
+</div>

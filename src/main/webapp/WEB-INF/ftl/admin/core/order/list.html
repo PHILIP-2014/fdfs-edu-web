@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<script type="text/javascript">
+$(function() {
+	var status = ${status!};
+	if(status != null){
+		document.getElementById("status").value=status;
+	}
+})
+</script>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 订单管理 - 列表</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加订单" onclick="this.form.action='add.jhtml';"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+组织名称：<input  type="text" name="orgName" value="${orgName!}"/>&nbsp;
+用户姓名：<input type="text" name="realName" value="${realName!}"/>&nbsp;
+最后登录时间从:  <@pj.text name="creatStartTime" size="14"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>
+到<@pj.text name="creadEndTime" size="14"
+	onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+    class="Wdate"/>&nbsp;
+状态:<select name="status" id="status">
+        <option value="">[请选择]</option>
+		<option value="-2">已关闭</option>
+		<option value="-1">已退款</option>
+		<option value="0">新建</option>
+		<option value="1">已支付</option>
+		<option value="2">已开通</option>
+	</select>
+<input type="submit" value="搜索" />
+</form>
+
+<@p.grid
+  cols=[{"label":"ID","name":"row.orderId"},
+        {"label":"订单序号","name":"row.orderNo"},
+        {"label":"组织名称(ID)","name":"row.org.orgName+'('+row.orgId+')'"},
+        {"label":"用户名称(ID)","name":"row.user.userName+'('+row.userId+')'"},
+        {"label":"订单总额","name":"row.totalFee"},
+        {"label":"折扣","name":"row.discount"},
+        {"label":"实付金额","name":"row.actuallyPaid"},
+        {"label":"购买笔数","name":"row.lineCount"},
+        {"label":"支付方式","name":"(row.paymentType=0)?string('网银支付','线下支付')", "escape":false},
+        {"label":"支付渠道","name":"(row.paymentChannel=101)?string('支付宝','其他')", "escape":false},
+        {"label":"支付状态","name":"(row.status=-2)?string('已关闭',(row.status=-1)?string('已退款',(row.status=0)?string('新建',(row.status=1)?string('已支付','已开通'))))", "escape":false}
+       ]
+  keyId="orderId" keyId2="orderId" rowIndex=false
+  
+  normalOperate=[{"action":"/admin/core/order/detail","name":"<img src='"+base+"/images/admin/show.gif'>"},
+                 {"action":"/admin/core/order/edit","name":"<img src='"+base+"/images/admin/edit.gif'>"},
+                 {"action":"/admin/core/order/ajax/delete","type":"ajax","name":"<img src='"+base+"/images/admin/delete.gif'>","confirm":"您确定删除订单吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/order/ajax/delete","type":"ajax","name":"删除订单","confirm":"您确定删除所选的订单吗？"}
+               ]
+  keepParams=[
+			  {"name":"returnPage","value":"pageNo"},
+			  {"name":"orgName","encode":true},
+			  {"name":"realName","encode":true},
+			  {"name":"creatStartTime","encode":false},
+			  {"name":"creadEndTime","encode":false},
+			  {"name":"status","encode":false}
+  			 ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate({
+		submitHandler:function(form){
+			AjaxPostForm('Tupdate.htm',form.id);
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统设置 - 用户管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form id="submitForm" labelWidth="15" action="update">
+<@pj.text colspan="1" width="50" label="登录名" name="bean.loginName" id="username" rname="username" rvalue=bean.loginName required="true" vld="{required:true,rangelength:[2,20],username:true,remote:{url:'TcheckUsername.do',data:{username:function(){return $('#username').val();}, id:'${bean.userId}'}},messages:{remote:'用户名已存在！'}}"/>
+<@pj.text colspan="1" width="50" label="真实姓名" name="bean.realName" maxlength="50"/><@pj.tr/>
+<@pj.password colspan="1" width="50" label="密码" id="password" name="bean.password" maxlength="32"/>
+<@pj.password colspan="1" width="50" label="确认密码" id="password2" equalTo="#password"/><@pj.tr/>
+<@pj.radio colspan="1" width="50" label="用户类型" name="bean.type" list={"1":"普通用户","2":"企业版用户"}/><@pj.tr/>
+<@pj.radio colspan="1" width="50" label="性别" name="bean.gender" list={"true":"男","false":"女"}/>
+<@pj.text colspan="1" width="50" label="电子邮箱" name="bean.email" maxlength="100" id="email" maxlength="100" 
+	required="true" vld="{required:true,email:true,remote:{url:'TcheckEmail.jhtml',data:{email:function(){return $('#email').val();}, id:'${bean.userId}'}}, messages:{remote:'email已经被使用！'}}"/><@pj.tr/>
+<@pj.text colspan="1" width="50" label="办公电话" name="bean.tel" maxlength="100"/>
+<@pj.text colspan="1" width="50" label="手机" name="bean.mobile" maxlength="250"/><@pj.tr/>
+<@pj.text colspan="1" width="50" label="地址" name="bean.address" size="45" maxlength="250"/>
+<@pj.text colspan="1" width="50" label="邮编" name="bean.zip" maxlength="20"/><@pj.tr/>
+<@pj.radio colspan="2" width="50" label="禁用" name="bean.disabled" list={"true":"是","false":"否"}/><@pj.tr/>
+<@pj.text colspan="1" width="50" label="创建时间" name="bean.createTime" disabled="disabled"/>
+<@pj.text colspan="1" width="50" label="登录次数" name="bean.loginCount" disabled="disabled"/><@pj.tr/>
+<@pj.text colspan="1" width="50" label="最后登录时间" name="bean.lastLoginTime" disabled="disabled"/>
+<@pj.text colspan="1" width="50" label="最后登录IP" name="bean.lastLoginIp" disabled="disabled"/><@pj.tr/>
+<@pj.td colspan="2"><@pj.hidden name="bean.id" /><@pj.submit value="保存" onclick="return postform();"/> &nbsp; <@pj.reset value="重置" /></@pj.td>
+</@pj.form>
+</div>
+</body>
+</html>

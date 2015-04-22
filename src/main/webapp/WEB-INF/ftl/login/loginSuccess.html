@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="系统登录">
+    <meta name="author" content="Parox">
+    <link rel="shortcut icon" href="http://v3.bootcss.com/docs-assets/ico/favicon.png">
+
+    <title>parox-登录成功</title>
+	<@p.PublicResource 
+        	css=['/parox-signin.css']
+        />   
+  </head>
+
+  <body>
+	<script>
+    	$(function(){
+    		setTimeout(function(){parent.Parox.Dialog.closeLogin();},300);
+		});
+    </script>
+    <div class="container">
+
+      登录成功，如果页面没有响应，请尝试刷新试下。
+
+    </div>
+     <!-- /container -->
+
+</body>
+</html>

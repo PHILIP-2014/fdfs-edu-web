@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<script>
+function showDetail(href,id){
+	var url = '${base}/admin/core/log/detail.htm';
+	showMsgBox('日志详情',url,{logId:id},400);
+}
+</script>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统管理 - 日志管理 - 会员日志 - 列表</div>
+	<div class="clear"></div>
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+用户ID：<input size="10" type="text" name="userId" value="${userId!}"/>&nbsp;
+用户实名：<input type="text" name="realName" value="${realName!}"/>&nbsp;
+登录名称：<input type="text" name="loginName" value="${loginName!}"/>&nbsp;
+IP地址：<input type="text" name="ipAddr" value="${ipAddr!}"/><br/>
+最后登录时间从:  <@pj.text name="opStartTime" size="14"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>&nbsp;
+到  <@pj.text name="opEndTime" size="14"
+	onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+    class="Wdate"/>&nbsp;
+<input type="submit" value="搜索" />
+</form>
+
+<@p.grid
+  cols=[{"label":"用户ID","name":"(row.userId)!"},
+  		{"label":"用户名称","name":"(row.user.realName)!"},
+        {"label":"登录名称","name":"row.loginName"},
+        {"label":"操作时间","name":"(row.opTime?string('yyyy-MM-dd hh:mm'))!"},
+        {"label":"操作类型","name":"row.opTypeData.dataName"},
+        {"label":"操作模块","name":"row.sysCodeData.dataName"},
+        {"label":"IP地址","name":"row.ipAddr"},
+        {"label":"浏览器","name":"row.browser"}
+       ]
+  keyId="logId" keyId2="logId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/log/detail","name":"<img src='"+base+"/images/admin/show.gif'>","type":"func","define":"showDetail"}
+                ]
+  keepParams=[
+			 {"name":"returnPage","value":"pageNo"},
+			 {"name":"userId","encode":false},
+			 {"name":"realName","encode":true},
+			 {"name":"loginName","encode":true},
+			 {"name":"ipAddr","encode":false},
+			 {"name":"opStartTime","encode":false},
+			 {"name":"opEndTime","encode":false}
+	 		]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

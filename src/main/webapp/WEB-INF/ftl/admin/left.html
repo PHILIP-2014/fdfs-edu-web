@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Parox—后台-菜单</title>
+[@p.Include page="admin.ftl"/]
+
+<script src="${base}/js/showhidden.js" type="text/javascript"></script>
+<SCRIPT>
+function swapMenu(mitem){
+	var mitems = document.getElementsByName("ms");
+	for(var i = 0; i < mitems.length; i++){
+	mitems[i].className="tabs-out";
+	}
+	mitem.className="tabs-over";
+	}
+</SCRIPT>
+<SCRIPT language=javascript type=text/javascript>
+    $(function() {
+        var currCatalogID = 'subItem1';
+        if (document.getElementById(currCatalogID) == null) {
+            currCatalogID = 'item1';
+            $("#" + currCatalogID).removeClass("collapse").addClass("expand");
+        }
+        else {
+            $("#" + currCatalogID).parent().parent().removeClass("collapse").addClass("expand");
+            $("#" + currCatalogID + " > a").addClass("Selected");
+        }
+
+    })
+    function Expand(obj) {
+        $("#treeul > li").removeClass("expand").addClass("collapse");
+        $(obj).parent().removeClass("collapse").addClass("expand");
+    }
+
+    function ShowTab(tabName) {
+        var array = new Array("JC", "Tg", "Qj");
+        for(var i=0;i<array.length;i++)
+        {
+            var currImg = $("#img" + array[i]).attr("src");
+            if (currImg == null || currImg == undefined) {
+                continue;
+            }
+            var currPos = currImg.lastIndexOf('.');
+            var currImgExceptExt = currImg.substr(0, currPos).replace("_","");
+            if(array[i] == tabName)
+            {
+                $("#div" + array[i]).show();
+                
+                currImg = currImgExceptExt + "_" + currImg.substring(currPos, currImg.length);
+            }
+            else
+            {
+                $("#div" + array[i]).hide();
+                currImg = currImgExceptExt + currImg.substring(currPos, currImg.length);
+            }
+            $("#img" + array[i]).attr("src", currImg);
+        }
+    }
+</SCRIPT>
+</head>
+
+<body>
+	<div id="navleft" class="navleft">
+		<UL id=treeul>
+	          <LI class=collapse id=item1><A class=title onclick=Expand(this) href="javascript:;">快捷通道</A> 
+	              <DL>
+	                    <DD id=subItem2 class="on"><A href="#">赞助商管理</A></DD> 
+	                    <DD id=subItem3><A href="#">上架管理</A></DD> 	                    
+	              </DL>
+	              <div class="l-line"></div>
+	          </LI>
+	          <LI class=collapse id=item7><A class=title onclick=Expand(this) href="javascript:;">渠道订单</A> 
+	              <DL>
+	                    <DD id=subItem8><A href="#">侍付款订单</A></DD>
+	                    <DD id=subItem9><A href="#">已付款订单</A></DD>
+	                    <DD id=subItem10><A href="#">已取消订单</A></DD>
+	              </DL>
+	              <div class="l-line"></div>
+	
+	          </LI>
+	      </UL>
+	  </div>    
+</body>
+</html>

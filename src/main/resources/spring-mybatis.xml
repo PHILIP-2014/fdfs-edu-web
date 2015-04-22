@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+>
+
+	<!-- JNDI方式配置数据源 -->
+	<!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"><property name="jndiName" value=""/></bean>-->
+    <!-- 配置数据源 -->
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">  
+		<property name="url" value="${jdbc_url}" />
+		<property name="username" value="${jdbc_username}" />
+		<property name="password" value="${jdbc_password}" />
+		
+		<!-- 初始化链接大小 -->
+		<property name="initialSize" value="0" />
+		<!-- 连接池最大使用链接数量 -->
+		<property name="maxActive" value="50" />
+		<!-- 连接池最大空闲 -->
+		<!--<property name="maxIdle" value="20" />-->
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="0" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+		
+		<!--  
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnect" value="" />
+		-->
+		
+		<property name="validationQuery" value="${validationQuery}" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+		
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="25200000" />
+		
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" />-->
+		<property name="filters" value="mergeStat" />
+				
+	</bean>
+	
+	<!-- 分页拦截器-->
+    <bean id="pageInterceptor" class="com.daoman.parox.common.interceptor.PageInterceptor">
+    	<!-- <property name="databaseType" value="MySQL"/> -->
+    </bean>
+	
+	<!-- org.skycloud.mybatis.SqlSessionFactoryBean or org.mybatis.spring.SqlSessionFactoryBean-->
+	<bean id="sqlSessionFactory" class="org.skycloud.mybatis.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />		
+		<!-- 数组类型，用来指定别名的。指定了这个属性后，Mybatis会把这个类型的短名称作为这个类型的别名 -->
+		<property name="typeAliases">
+			<array>
+				<value>com.daoman.parox.demo.model.User</value>
+			</array>
+		</property>
+		<property name="plugins">
+	        <array>
+	            <ref bean="pageInterceptor"/>
+	        </array>
+		</property>
+		<!--<property name="configLocation" value="classpath:sql-map-config.xml"/>-->
+		<property name="mapperLocations" value="classpath:sqlmap/*Mapper.xml" /> 
+	</bean>
+	
+	<!-- 定义mybatis操作模板类似hibernateTemplate org.skycloud.mybatis.SqlSessionTemplate-->
+	
+    <bean id="sqlSessionTemplate" class="org.skycloud.mybatis.SqlSessionTemplate">  
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+    
+	
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.daoman.parox.demo.dao" />
+		<!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" /> -->
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
+	</bean>
+	
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 注解方式配置事务 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+	
+	<!-- 拦截器方式配置事务 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="do*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
+			<!-- <tx:method name="*" read-only="true" rollback-for="Exception"/> -->
+			
+			<tx:method name="get*" propagation="SUPPORTS" rollback-for="Exception"/>
+			<tx:method name="find*" propagation="SUPPORTS" rollback-for="Exception"/>
+			<tx:method name="load*" propagation="SUPPORTS" rollback-for="Exception"/>
+			<tx:method name="search*" propagation="SUPPORTS" rollback-for="Exception"/>
+			<tx:method name="datagrid*" propagation="SUPPORTS" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 事务切面配置 -->
+	<aop:config>
+		<!-- <aop:advisor pointcut="execution(* com.parox.base.BaseService.*(..))" advice-ref="txAdvice"/> -->
+		<!-- <aop:advisor pointcut="execution(* com.parox.service.*Service.*(..))" advice-ref="txAdvice"/> -->
+		<aop:advisor pointcut="execution(* com.daoman.parox.*.service.*Service.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+	
+	<!-- 配置druid监控spring jdbc -->
+	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+	</bean>
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.daoman.parox.demo.service.*</value>
+			</list>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut"/>
+	</aop:config>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

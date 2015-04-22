@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN" "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+<!--
+    Configuration file for UrlRewriteFilter http://tuckey.org/urlrewrite/
+-->
+<urlrewrite>
+	<!-- 登录 -->
+	<rule>
+        <from>^/login(/)?$</from>
+        <to type="forward">/login/login.htm</to>
+    </rule>
+    <rule>
+        <from>^/user/([0-9]+)</from>
+        <to type="forward">/user/profile.htm?id=$1</to>
+    </rule>
+    <rule>
+        <from>^/task/([0-9]+)</from>
+        <to type="forward">/task/show.htm?taskId=$1</to>
+    </rule>
+    <rule>
+        <from>^/organization/([0-9]+)</from>
+        <to type="forward">/organization/index.htm?id=$1</to>
+    </rule>
+    <rule>
+        <from>^/workspace/([0-9]+)</from>
+        <to type="forward">/workspace/index.htm?spaceId=$1</to>
+    </rule>
+    
+	<!-- 注册 
+    <rule>
+        <from>^/register(/)?$</from>
+        <to type="forward">/register/register.htm</to>
+    </rule>
+    
+    <rule>
+        <from>^/active(/)?$</from>
+        <to type="forward">/register/active.htm</to>
+    </rule>
+    -->
+    
+	<!-- 评论 -->
+    <rule>
+        <from>^/comment(/)?$</from>
+        <to type="forward">/comment/comment.htm</to>
+    </rule>
+        <rule>
+        <from>^/commentView(/)?$</from>
+        <to type="forward">/comment/commentView.htm</to>
+    </rule>
+
+	<!-- 组织 -->
+	<rule>
+		<from>^/org(/)?$</from>
+		<to type="forward">/organization/org.htm</to>
+	</rule>
+	<rule>
+		<from>^/orgAdd(/)?$</from>
+		<to type="forward">/organization/orgAdd.htm</to>
+	</rule>
+	<rule>
+		<from>^/orgDel(/)?$</from>
+		<to type="forward">/organization/orgDel.htm</to>
+	</rule>
+	<rule>
+		<from>^/orgSet(/)?$</from>
+		<to type="forward">/organization/orgSet.htm</to>
+	</rule>
+
+	<!-- 工作空间 -->
+	<rule>
+		<from>^/spaceAdd(/)?$</from>
+		<to type="forward">/workspace/spaceAdd.htm</to>
+	</rule>
+	<rule>
+		<from>^/spaceDel(/)?$</from>
+		<to type="forward">/workspace/spaceDel.htm</to>
+	</rule>
+	
+	<!-- 文件管理 -->
+	<rule>
+		<from>^/s/([a-zA-Z0-9\\-]*)$</from>
+		<to type="forward">/document/doclink/share.htm?code=$1</to>
+	</rule>
+	<rule>
+		<from>^/s/doc/([a-zA-Z0-9\\-]*)/(\d*)$</from>
+		<to type="forward">/document/doclink/doc.htm?code=$1&amp;docId=$2</to>
+	</rule>
+	<rule>
+		<from>^/s/folder/([a-zA-Z0-9\\-]*)/(\d*)$</from>
+		<to type="forward">/document/doclink/folder.htm?code=$1&amp;folderId=$2</to>
+	</rule>
+
+	<!-- 下载 -->
+	<!--
+	<rule>
+        <from>^/download/([0-9]+)</from>
+        <to type="forward">/download/UserDownload.do?id=$1</to>
+    </rule>
+    <rule>
+        <from>^/download/([0-9]+)([^0-9]{1})spm=([^_]+)</from>
+        <to type="forward">/download/UserDownload.do?id=$1</to>
+    </rule>
+    -->
+<!--  
+    <rule>
+        <from>^/doc-([0-9]+).html</from>
+        <to type="forward">/doc/doc_view.htm?docId=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/doc/list-([0-9]+)-([0-9]+)-([0-9])-([0-9]).html</from>
+        <to type="forward">/doc/search.htm?ctgid=$1&amp;page=$2&amp;orderby=$3&amp;doctype=$4</to>
+    </rule>
+    
+    <rule>
+        <from>^/doc/cat-([0-9]+)-([0-9]+)-([0-9])-([0-9]).html</from>
+        <to type="forward">/doc/ctglist.htm?ctgid=$1&amp;page=$2&amp;orderby=$3&amp;doctype=$4</to>
+    </rule>
+    
+    <rule>
+        <from>^/home/([0-9]+)/diary</from>
+        <to type="forward">/home/diary_list.htm?uid=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/diary-([0-9]+).html</from>
+        <to type="forward">/home/diary_view.htm?id=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/home/([0-9]+)/doc</from>
+        <to type="forward">/home/doc_list.htm?uid=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/home/([0-9]+)-([0-9]+)/doc</from>
+        <to type="forward">/home/doc_list.htm?uid=$1&amp;ctgid=$2</to>
+    </rule>
+    
+    <rule>
+        <from>^/home/([0-9]+)/group</from>
+        <to type="forward">/home/group_all.htm?uid=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/home/([0-9]+)/contact</from>
+        <to type="forward">/home/contact.htm?uid=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/home/([0-9]+)</from>
+        <to type="forward">/home/home.htm?uid=$1</to>
+    </rule>
+    
+    <rule>
+        <from>^/forum-([0-9]+)-([0-9]+)-([0-9]+)\.html</from>
+        <to>/forum.jsp?sid=$1&amp;fid=$2&amp;page=$3</to>
+    </rule>
+
+    <rule>
+        <from>^/topic-([0-9]+)-([0-9]+)\.html</from>
+        <to>/topic.jsp?tid=$1&amp;page=$2</to>
+    </rule>
+
+    <rule>
+        <from>^/topic-([0-9]+)-r([0-9]+)\.html</from>
+        <to>/topic.jsp?tid=$1&amp;rid=$2</to>
+    </rule>
+
+    <rule>
+        <from>^/forum-([0-9]+)-([0-9]+)-([0-9]+)\.xml</from>
+        <to>/rss?sid=$1&amp;fid=$2&amp;style=$3</to>
+    </rule>
+
+    <rule>
+        <from>^/topics-([a-z]+)-([0-9]+)\.xml</from>
+        <to>/rss?fid=$1&amp;style=$2</to>
+    </rule>
+
+    <rule>
+        <from>^/forums-([0-9a-z]+)-([0-9]+)\.xml</from>
+        <to>/opml?sid=$1&amp;style=$2</to>
+    </rule>
+-->
+</urlrewrite>
+

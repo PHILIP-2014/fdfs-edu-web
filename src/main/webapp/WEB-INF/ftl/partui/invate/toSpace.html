@@ -1,0 +1,196 @@
+<style>
+<!--
+ul.people-picker {
+	-moz-border-radius-topright: 0;
+	-webkit-border-top-right-radius: 0;
+	-ms-border-top-right-radius: 0;
+	border-top-right-radius: 0;
+	-moz-border-radius-bottomright: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-ms-border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;
+	max-height: 80px;
+	overflow: auto;
+}
+ul.token-input-list {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+	font-size: 13px;
+	font-size: 1.3rem;
+	overflow: hidden;
+	height: auto !important;
+	height: 1%;
+	cursor: text;
+	min-height: 1px;
+	z-index: 999;
+	margin: 0;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	list-style-type: none;
+	line-height: 100%;
+	padding-left: 2px;
+}
+ul.dropdown-toggle {list-style:none;}
+ul.dropdown-toggle .input-token {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 1.2rem;
+	float: left;
+	margin: 2px 2px 2px 0;
+	padding: 2px 4px;
+	color: #000;
+	cursor: default;
+	border: 1px solid #e9e9e9;
+	max-width: calc(100% - 12px);
+}
+ul.dropdown-toggle .contact-input {width:184px;}
+
+li.input-token img{
+	float: left;
+	height: 16px;
+	margin-right: 5px;
+	width: 16px;
+}
+
+li.input-token span {
+	color: #999;
+	margin: 1px 5px 0 5px;
+	font-weight: bold;
+	cursor: pointer;
+	display: inline-block;
+	float: right;
+	position: relative;
+	top: 1px;
+}
+
+li.input-token p {
+	white-space: nowrap;
+	overflow: hidden;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	float: left;
+	width: auto;
+	min-width: 40px;
+	padding: 0;
+	margin: 0;
+}
+li.contact-input input {
+	border: 0;
+	background-color: white;
+	margin: 0;
+	padding: 0 2px;
+	height: 100%;
+	-webkit-appearance: none;
+} 
+-->
+</style>
+<!--*创建项*-->
+<div class="modal-body clearfix">
+	<form id="invateForm" role="form" class="form-verify-f clearfix" data-remote="true"  data-parsley-validate>
+		<div id="people-picker-wrapper" class="input-group marg-10-b">
+			<input type="text" class="invitation-people-picker" id="people_picker_contacts" name="people_picker_contacts"<#if user??> data-tokens-dropdown="user|${user.userId}"</#if> data-is-picker="true" tabindex="0" style="display: none;">
+			<ul class="token-input-list fluid people-picker dropdown-toggle" data-toggle="dropdown">
+				<#if user??>
+				<li class="input-token" data-id="user|${user.userId}">
+					<img class="img" src="${user.smallPhoto!(base+'/images/user_48x48.png')}">
+					<span class="token-input-delete-token img-ext delete">x</span>
+					<p class="bd" style="max-width: calc(100% - 38px);">${user.realName!(user.email!(user.mobile!'无名'))}</p>
+				</li>
+				</#if>
+				<!-- <li class="input-token" data-id="user|1">
+					<img class="img" src="https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_tiny.png">
+					<span class="token-input-delete-token img-ext delete">x</span>
+					<p class="bd" style="max-width: calc(100% - 38px);">wangqingyun432142</p>
+				</li>
+				<li class="input-token" data-id="user|12">
+					<img class="img" src="https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_tiny.png">
+					<span class="token-input-delete-token img-ext delete">x</span>
+					<p class="bd" style="max-width: calc(100% - 38px);">梁凯</p>
+				</li>
+				<li class="input-token" data-id="mail|13">
+					<img class="img" src="https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_tiny.png">
+					<span class="token-input-delete-token img-ext delete">x</span>
+					<p class="bd" style="max-width: calc(100% - 38px);">梁凯2</p>
+				</li> -->
+        		<li class="input-box"><input placeholder="选择对象或者输入电邮地址" type="text" class="form-control form-bg form-bg-contact contact-input" /></li>
+        	</ul>
+            <ul class="dropdown-menu col-md-12" role="menu">
+                <li class="dropdown-header">联系人</li>
+                <li class="divider"></li>
+                <!-- <li data-group-id="profiles" data-id="user|1862670"><a href="javascript:void(0);"><img src="https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_tiny.png" class="img-rounded img-16X16"> 路飞</a></li>
+		        <li data-group-id="profiles" data-id="user|1862670"><a href="javascript:void(0);"><img src="https://d2cmuesa4snpwn.cloudfront.net/images/avatar/defaultavatar_tiny.png" class="img-rounded img-16X16"> 索隆</a></li>
+		        <li data-group-id="profiles" data-id="user|1862670"><a href="javascript:void(0);"><img src="${base}/images/user_48x48.png" class="img-rounded img-16X16"> 山治</a></li>
+		        <li data-group-id="profiles" data-id="user|1862670"><a href="javascript:void(0);"><img src="${base}/images/user_48x48.png" class="img-rounded img-16X16"> 乔巴</a></li> -->
+            </ul>
+            <span class="input-group-btn">
+            	<button type="button" class="btn btn-default">
+                	<span class="icon-contact font12"></span>
+                </button>
+            </span>
+            <!--/input-group-btn end-->
+    	</div>	
+	
+        <div class="form-group">
+        	<textarea id="Input_invateText" class="form-control" rows="3">
+        	<#if space??>
+嗨，我在派乐上建立了一个工作空间-这样我们可以一起在 ${space.name!'工作空间'} 上工作了。请加入进来，让我们将工作圆满完成。谢谢！
+        	<#else>
+嗨，我在派乐上建立了一个工作空间-这样我们可以一起工作了。请加入进来，让我们将工作圆满完成。谢谢！
+        	</#if>
+        	</textarea>
+        </div>
+        <#if space??><#else>
+        <div class="form-group clearfix">
+        	<div><label>选择一个工作空间</label></div>
+            <div class="padd-un col-md-4">
+                <select id="Input_spaceId" name="spaceId" class="form-control">
+                <@org_space_list userId=_user.userId>
+                	<#list tag_list as o>
+                	<optgroup label="${o.orgName!}"></optgroup>                   
+	                    <#list o.spaces as s>
+	                    <option value="${s.spaceId}">&nbsp;&nbsp;${s.name}</option>
+	                    </#list>
+	                </#list>
+	            </@org_space_list>
+                </select>
+            </div>
+        </div>
+        </#if>
+        <div class="form-group">
+            <div class="dropdown">
+                <label>角色：</label>
+                <a id="J_role" data-toggle="dropdown" href="#" role="button">
+                    <span class="role-name">普通会员</span><span class="caret"></span>
+                </a>
+                <#if space??>
+                <input type="hidden" id="Input_spaceId" name="spaceId" value="${space.spaceId!0}">
+                </#if>
+                <input type="hidden" id="Input_roleType" name="roleType" value="${p.SpaceRole.COMMON}">
+                <ul id="J_role_options" class="dropdown-menu padd-un-b" role="menu" aria-labelledby="drop1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-item="${p.SpaceRole.MANAGE}">空间管理员</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:;" data-item="${p.SpaceRole.COMMON}">普通会员</a></li>
+                    <li role="presentation"  class="marg-5-t">
+                        <div class="panel-footer bgGray-f5 clearfix">
+                            <p class="pull-left"><a href="#" target="_blank">角色详情</a></p>
+                            <button class="btn btn-primary btn-sm pull-right">升级</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+                    
+<!--*提交项*-->
+<div class="modal-footer bd-un-style">
+	<button id="Btn_invate_space" class="btn btn-success" type="button">添加</button>
+</div>
+<script>
+(function(){
+	Parox.Collaborator.picker('people-picker-wrapper',{spaceId:${(space.spaceId)!0}});
+}());
+</script>

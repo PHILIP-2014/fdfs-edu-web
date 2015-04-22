@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 基础管理 - 用户管理 - 用户详情</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+<@pj.form id="submitForm" labelWidth="10">
+<tr><td width="15%" class="pn-flabel pn-flabel-h">用户ID(用户名)：</td>
+<td width="35%" class="pn-fcontent">${bean.userId!}<#if bean.userName?? >(${bean.userName!})</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">用户实名：</td>
+<td width="35%" class="pn-fcontent">${bean.realName!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">登录密码：</td>
+<td width="35%" class="pn-fcontent">${bean.password!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">用户类型：</td>
+<td width="35%" class="pn-fcontent">${bean.userType!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">邮箱：</td>
+<td width="35%" class="pn-fcontent">${bean.email!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">联系方式：</td>
+<td width="35%" class="pn-fcontent">${bean.mobile!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">创建时间：</td>
+<td width="35%" class="pn-fcontent">${(bean.createTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">最近登录时间：</td>
+<td width="35%" class="pn-fcontent">${(bean.lastLoginTime?string("YYYY-MM-dd hh:mm:ss"))!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">最近登录IP：</td>
+<td width="35%" class="pn-fcontent">${bean.lastIp!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">登录次数：</td>
+<td width="35%" class="pn-fcontent">${bean.loginCount!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">错误时间：</td>
+<td width="35%" class="pn-fcontent">${(bean.errorTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">错误次数：</td>
+<td width="35%" class="pn-fcontent">${bean.errorCount!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">错误IP：</td>
+<td width="35%" class="pn-fcontent">${bean.errorIp!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">用户状态：</td>
+<td width="35%" class="pn-fcontent">${bean.status!}</td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td>
+<td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h">所属组织：</td>
+<td width="35%" class="pn-fcontent"><#if bean.orgName??>${bean.orgName!}(${bean.orgId!})</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">所属部门：</td>
+<td width="35%" class="pn-fcontent">${bean.deptName!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">职位：</td>
+<td width="35%" class="pn-fcontent">${bean.position!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">手机号：</td>
+<td width="35%" class="pn-fcontent">${bean.cellphone!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">电话：</td>
+<td width="35%" class="pn-fcontent">${bean.tel!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">传真：</td>
+<td width="35%" class="pn-fcontent">${bean.fax!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">邮编：</td>
+<td width="35%" class="pn-fcontent">${bean.zipcode!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">QQ：</td>
+<td width="35%" class="pn-fcontent">${bean.qq!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">微博：</td>
+<td width="35%" class="pn-fcontent">${bean.weibo!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">地区：</td>
+<td width="35%" class="pn-fcontent">${province!}-${city!}-${county!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">详细地址：</td>
+<td width="35%" class="pn-fcontent">${bean.address!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">性别：</td>
+<td width="35%" class="pn-fcontent">${bean.gender!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">生日：</td>
+<td width="35%" class="pn-fcontent">${(bean.birthday?string("YYYY-MM-dd"))!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">身份证号：</td>
+<td width="35%" class="pn-fcontent">${bean.idCard!}</td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td>
+<td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h">邮箱绑定：</td>
+<td width="35%" class="pn-fcontent"><#if bean.emailVerify?? && bean.emailVerify = true>已绑定<#else>未绑定</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">手机绑定：</td>
+<td width="35%" class="pn-fcontent"><#if bean.mobileVerify?? && bean.mobileVerify = true>已绑定<#else>未绑定</#if></td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">缺省空间：</td>
+<td width="35%" class="pn-fcontent"><#if bean.defaultSpaceId?? >${spaceName!}(${bean.defaultSpaceId!})</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">成员变动提醒：</td>
+<td width="35%" class="pn-fcontent"><#if bean.memberChangeNotify = true>接收<#else>不接收</#if></td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">任务提醒：</td>
+<td width="35%" class="pn-fcontent"><#if bean.taskNotify = true>接收<#else>不接收</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">空间成员身份变更提醒：</td>
+<td width="35%" class="pn-fcontent"><#if bean.docChangeNotify = true>接收<#else>不接收</#if></td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">@我、收到消息提醒：</td>
+<td width="35%" class="pn-fcontent"><#if bean.messageNotify = true>接收<#else>不接收</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">手机短信通知提醒：</td>
+<td width="35%" class="pn-fcontent"><#if bean.smsNotify = true>接收<#else>不接收</#if></td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">每日文摘：</td>
+<td width="35%" class="pn-fcontent"><#if bean.dailyInfoEmail = true>接收<#else>不接收</#if></td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td>
+<td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h">协作人员数：</td>
+<td width="35%" class="pn-fcontent">${bean.collaCount!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">加入空间数：</td>
+<td width="35%" class="pn-fcontent">${bean.spaceCount!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">上传文件数：</td>
+<td width="35%" class="pn-fcontent">${bean.fileCount!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">共享文件数：</td>
+<td width="35%" class="pn-fcontent">${bean.shareCount!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">接受任务数：</td>
+<td width="35%" class="pn-fcontent">${bean.taskAcceptCount!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">完成任务数：</td>
+<td width="35%" class="pn-fcontent">${bean.taskFinishCount!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">留言数：</td>
+<td width="35%" class="pn-fcontent">${bean.leaveMsgCount!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">用户等级：</td>
+<td width="35%" class="pn-fcontent">${bean.level!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">总积分：</td>
+<td width="35%" class="pn-fcontent">${bean.score!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">周积分：</td>
+<td width="35%" class="pn-fcontent">${bean.scoreWeek!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">总积分排名：</td>
+<td width="35%" class="pn-fcontent">${bean.scoreRank!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">未读消息数：</td>
+<td width="35%" class="pn-fcontent">${bean.unviewCount!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">在线状态：</td>
+<td width="35%" class="pn-fcontent"><#if bean.online = true>在线<#else>离线</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">web服务器：</td>
+<td width="35%" class="pn-fcontent">${bean.webServer!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">更新时间：</td>
+<td width="35%" class="pn-fcontent">${(bean.updateTime?string("YYYY-MM-dd hh:mm:ss"))!}</td><tr/>
+
+</@pj.form>
+</div>
+</body>
+</html>

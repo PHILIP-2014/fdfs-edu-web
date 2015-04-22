@@ -1,0 +1,49 @@
+<!spaceTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 空间管理 - 详情</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form labelWidth="10" >
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">空间名称：</td>
+<td width="35%" class="pn-fcontent">${space.name!}(${space.spaceId!})</td>
+<td width="15%" class="pn-flabel pn-flabel-h">空间描述：</td>
+<td width="35%" class="pn-fcontent">${space.description!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">所属组织：</td>
+<td width="35%" class="pn-fcontent">${orgName!}(${space.orgId})</td>
+<td width="15%" class="pn-flabel pn-flabel-h">空间创建者：</td>
+<td width="35%" class="pn-fcontent">${orgName!}(${space.ownerId})</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">空间人数：</td>
+<td width="35%" class="pn-fcontent">${space.userNumber!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">创建时间：</td>
+<td width="35%" class="pn-fcontent">${(space.createTime?string("YYYY-MM-dd hh:mm:ss"))!}</td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">空间类型：</td>
+<td width="35%" class="pn-fcontent"><#if space.stype = 1>内部群组<#else>外部网络</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">开放状态：</td>
+<td width="35%" class="pn-fcontent"><#if space.permission = 1>开放的<#else>私有的</#if></td>
+<tr/>
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h">任务状态：</td>
+<td width="35%" class="pn-fcontent"><#if space.status = 0>正常<#else>删除或禁用</#if></td>
+<tr/>
+</@pj.form>
+</div>
+</body>
+</html>

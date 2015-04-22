@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置：运营分析 - 企业行为统计 - 日统计</div>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="/admin/analyse/org/dayStatistics.htm" class="rhead">
+选择起止日期:  <@pj.text name="firstday"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>
+到 <@pj.text name="lastday"
+				onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+   			    class="Wdate"/>
+<input type="submit" value="搜索" />
+</form>
+<@p.grid
+  cols=[{"label":"组织(ID)","name":"row.org.orgName+'('+row.orgId+')'","align":"right"},
+        {"label":"注册数","name":"row.newUserCount!","align":"right"},
+        {"label":"登录数","name":"row.loginUserCount!","align":"right"},
+        {"label":"在线时长(分)","name":"(row.sumOnlineTime%60)!","align":"right"},
+        {"label":"发起任务数","name":"row.launchTaskNum!","align":"right"},
+        {"label":"完成任务数","name":"row.finishTaskNum!","align":"right"},
+        {"label":"归档任务数","name":"row.archiveTaskNum!","align":"right"},
+        {"label":"总任务数","name":"row.sumTaskNum!","align":"right"},
+        {"label":"累计任务数","name":"row.totalTaskNum!","align":"right"},
+        {"label":"上传文档数","name":"row.uploadDocNum!","align":"right"},
+        {"label":"分享文档数","name":"row.shareDocNum!","align":"right"},
+        {"label":"浏览文档数","name":"row.viewDocNum!","align":"right"},
+        {"label":"下载文档数","name":"row.downDocNum!","align":"right"},
+        {"label":"内部协作人数","name":"row.innerCollaNum!","align":"right"},
+        {"label":"外部协作人数","name":"row.outerCollaNum!","align":"right"},
+        {"label":"协作企业数","name":"row.collaOrgNum!","align":"right"},
+        {"label":"评论数","name":"row.commentNum!","align":"right"},
+        {"label":"被评论数","name":"row.commentedNum!","align":"right"}
+       ]
+    keyId="orgId" keyId2="orgId" rowIndex=false
+    keepParams=[
+			  {"name":"returnPage","value":"pageNo"},
+			  {"name":"firstday","encode":false},
+			  {"name":"lastday", "encode":false}
+  			 ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

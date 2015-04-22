@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>edit</title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置：系统设置 - 基础设置 - 管理员管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加新的管理员" onclick="this.form.action='Tadd.jhtml';"/>
+		<input type="submit" value="返回列表" onclick="this.form.action='Tlist.jhtml';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form id="submitForm" onsubmit="PostCheckForm('Tupdate.htm','submitForm');return false;" action="update">
+<@pj.hidden name="adminId" value="${admin.adminId!}"/>
+<#if orgName??>
+<tr>
+<td class="pn-flabel pn-flabel-h">所属组织：</td>
+<td class="pn-fcontent">${orgName!}(${orgId})</td>
+<tr/>
+</#if>
+<tr>
+<td class="pn-flabel pn-flabel-h">管理员：</td>
+<td class="pn-fcontent">${adminName!}(${admin.userId!})</td>
+<tr/>
+
+<@pj.td label="角色">
+<label for="rIds" class="error lerror">请选择角色</label>
+<@pj.checkboxlist name="rIds" valueList=adminRoleIds list=roleList listKey="roleId" listValue="name" required="true" class="required"/>
+</@pj.td><@pj.tr/>
+
+<@pj.td label="拥有的功能">
+<label for="functionIds" class="error lerror">请选择功能</label>
+<#if funcRoot??>
+<@pj.tree root=funcRoot showDeep=2 isUrl=false isCheckBox=true checkBoxName="functionIds" childName="children" 
+ valueContent=adminFunctionIds vld="{required:true}"/>
+</#if>
+</@pj.td><@pj.tr/>
+<@pj.radio label="禁用" name="admin.isDisabled" list={"true":"是","false":"否"}/>
+<@pj.td><@pj.submit value="保存" onclick="PostCheckForm('Tupdate.htm','submitForm');return false;"/> &nbsp; <@pj.reset value="重置" /></@pj.td>
+</@pj.form>
+</div>
+</body>
+</html>

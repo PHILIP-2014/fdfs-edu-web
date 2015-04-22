@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>edit</title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置：系统设置 - 功能菜单 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加功能菜单" onclick="this.form.action='add.jhtml?pid=${id!}';"/>
+		<input type="submit" value="返回列表" onclick="this.form.action='list.jhtml?pid=${(bean.parentId)!}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@pj.form id="submitForm" onsubmit="PostCheckForm('ajax/update.htm','submitForm');return false;" action="update">
+<@pj.select label="上级菜单" name="parentId" value="${(bean.parentId)!0}" list=list listKey="functionId" listValue="selectTree" headerKey="0" headerValue="根目录"/>
+<@pj.text label="名称" name="name" value="${bean.name!}"/>
+<@pj.text label="URL" name="url" value="${bean.url!}" size="50"/>
+<@pj.radio label="URL类型" name="urlType" value="${bean.urlType!}" list={'1':'Action(不带后缀)','2':'其他'}/>
+<@pj.textarea label="功能集" name="funcs" value="${bean.funcs!}" cols="70" rows="12"/>
+<@pj.text label="描述" name="description" value="${bean.description!}" size="50"/>
+<@pj.text label="排列顺序" name="priority" value="${bean.priority!}" help="从小到大"/>
+<#assign isMenu=bean.isMenu>
+<@pj.radio label="菜单" name="isMenu" value="${(bean.isMenu?string('true','false'))!'false'}" list={'true':'是','false':'否'}/>
+<@pj.radio label="是否可用" name="isActive" value="${(bean.isActive?string('true','false'))!'false'}" list={'true':'可用','false':'不可用'}/>
+<@pj.td>
+<@pj.hidden name="functionId" value="${bean.functionId!}"/>
+<input type="hidden" name="pid" value="${(bean.parentId)!}"/>
+<@pj.submit value="保存" onclick="PostCheckForm('ajax/update.htm','submitForm');return false;"/> &nbsp; <@pj.reset value="重置" /></@pj.td>
+</@pj.form>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="mobileActiveForm" name="mobileActiveForm" role="form" action="${base}/register/step0.htm" method="get" class="form-inline" >
+				<!--logo-->
+				<div class="form-group">
+					<input id="mobile" name="mobile" type="hidden" value="${emailMobile}">
+					<input id="verifyCode" type="verifyCode" class="form-control" placeholder="手机验证码">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary form-control" id="mobileVerifyBtn">填写好了</button>
+				</div>
+				<div class="form-group">
+					<input id="resendBtn" type="button" class="btn btn-danger form-control" disabled="disabled" value="还剩60秒" />
+				</div>
+			</form>
+</body>
+</html>

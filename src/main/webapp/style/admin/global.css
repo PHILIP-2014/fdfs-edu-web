@@ -1,0 +1,171 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*reset 全局定义*/
+/*html{color:#000;background:#FFF;height:100%;}*/
+body{margin:0px;padding:0;FONT: 12px/1.231 "宋体",verdana,arial,helvetica,clean,sans-serif; COLOR: #333}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+/*会影响表格的单元格线*/
+/*table{border-collapse:collapse;border-spacing:0;}*/
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+/*caption,th{text-align:left;}*/
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}马
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}
+
+select,input,button,textarea{font:99% arial,helvetica,clean,sans-serif;}
+table{font-size:inherit;font:100%;}
+pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+
+/*清除浮动,清除背景*/
+.clr{ clear:both;}
+.t-10{ margin-top:10px;}
+.t-15{ margin-top:15px;}
+.t-20{ margin-top:20px;}
+
+.fl{float:left!important;_float:none;}
+.fr{float:right!important;_float:none;}
+.fl_6{_float:left;}
+.fr_6{_float:right;}
+.hid{overflow:hidden;}
+.mg_t{margin-top:10px;}
+.mg_r{margin-right:15px;}
+.mg_l{margin-left:25px;}
+.mg1{margin:5px 0 5px 0;}
+.mg2{margin:2px 0 2px 0;}
+.pd{padding:5px;}
+
+/*加粗*/
+strong{ font-weight:bold;} 
+
+/*文字，链接颜色*/
+.red{color:#ff0000;}
+.blue{color:#074977;}
+
+.font_bold{font-weight:bold;}
+.font_gray{color:#a5a5a5;}
+.orange{color:#FF6600;}
+/*.blue{color:#2165A4;}*/
+.blue1{color:#7c98be;}
+.blue2{color:#567eb3;}
+.gray{color:#B4B4B4;}
+.black{color:#000;}
+.font16{color:#FF6600; font-size:16px; font-weight:bold;}
+.green{color:#69a012;}
+
+.ash5{ color:#555555;}
+.ash5 a{ color:#555555; text-decoration:none;}
+.ash5 a:hover{ color:#555555; text-decoration:underline;}
+
+a.undl{ text-decoration:underline;}
+
+a{color:#074977;text-decoration:none;}
+a:hover{color:#074977; text-decoration:underline;}
+
+/* 背景 */
+body.index{background:url(../../images/page/tr.gif) right top no-repeat;}
+.pagecontent{ min-width:1000px;}
+
+
+/*头部*/
+#s-top{padding:6px 8px 0 8px; height:46px;}
+#s-top .logo{float:left;}
+#s-top .hy{float:left;margin-left:15px; *display:inline;}
+#s-top .qlink{float:right;}
+
+/*导航*/
+#s-nav{height:36px; background:url(../../images/page/bg_r.gif) 0 -1px repeat-x;}
+#s-nav ul{ margin-left:10px; margin-right:10px; }
+#s-nav ul li{ float:left; overflow:hidden; background:url(../../images/page/bg.gif) -226px -213px; font-weight:bold; padding:7px 0px 9px 0px; width:87px; text-align:center; margin-right:3px;}
+#s-nav ul li.on{ background:url(../../images/page/bg.gif) no-repeat -226px -154px; width:87px;}
+#s-nav ul li.on a{color:#FFFFFF;}
+
+/*左侧导航*/
+#s-main{width:100%;}
+.s-left{ position:absolute; width:200px; left:0px; height:495px; _margin-right:-3px; }
+#navleft{ width:190px; float:left; background:url(../../images/page/bg.gif) repeat-y; min-height:492px; height:495px;}
+#navleft ul#treeul{padding-left:5px; width:180px; height:100%-5px; padding-top:5px;}
+#navleft ul#treeul li{line-height:30px; margin-left:5px;}	
+#navleft ul#treeul li a{font-size:12px;color:#333;}
+#navleft ul#treeul li.expand{background:url(../../images/page/bg.gif) -326px -4px no-repeat;}
+#navleft ul#treeul li.collapse{background:url(../../images/page/bg.gif) -536px -4px no-repeat;}
+#navleft ul#treeul li.expand dl{display:block;}
+#navleft ul#treeul li.collapse dl{display:none;}
+#navleft ul#treeul li a.title{font-size:14px;color:#333333; font-weight:bold;padding-left:20px;}
+#navleft ul#treeul li dl dd a{font-size:12px;font-weight:normal;color:#074977; padding-left:10px; line-height:26px;}	
+#navleft ul#treeul li dl dd a:hover{font-size:12px;color:#074977; height:26px;}
+#navleft ul#treeul li dl dd.on{ background:url(../../images/page/bg_r.gif) no-repeat 0px -225px; color:#FFFFFF;}	
+#navleft ul#treeul li dl dd.on a{ color:#FFFFFF;}	
+#navleft ul#treeul li dl dd a.Selected{font-size:12px;font-weight:bold;color:#074977;}
+.l-line{ background:url(../../images/page/bg_r.gif) no-repeat 0 -285px; height:2px;}
+
+.navline{float:left; width:10px; _width:10px; height:100%; overflow:hidden; vertical-align:middle; padding-top:0px !important; background-color:#FFF; /*BORDER-RIGHT: #91afd3 1px solid;*/}
+.navline div{ background:#e4f2fa; width:10px; height:100%; padding-top:8px; float:left;overflow:hidden;}
+.navPoint {COLOR:#6c92ad;CURSOR: hand; FONT-FAMILY: Webdings; FONT-SIZE: 9pt; } 
+
+.s-right{height:495px; margin-left:200px;}
+#fmmain {}
+.conright{}
+
+/*分页*/
+.pagination {FONT-SIZE: 12px; FONT-FAMILY: Tahoma; HEIGHT: 22px; line-height:22px;}
+.page-top,.page-bottom{FLOAT: right}
+.pagination A,.page-info,.page-prev,.page-cur,.page-start,.page-end,.page-break,.page-skip{FLOAT: left; MARGIN: 0px 3px 0px 0px; VERTICAL-ALIGN: middle; LINE-HEIGHT: 18px; FONT-FAMILY: Tahoma,SimSun,Arial; WHITE-SPACE: nowrap; HEIGHT: 18px; TEXT-ALIGN: center}
+.page-start,.pagination A,.page-end,.pagination A:hover{BORDER: #91afd3 1px solid; PADDING: 0 5px 0 5px;}
+.pagination A:hover {BORDER: #456d9c 1px solid; TEXT-DECORATION: none}
+.page-start,A.page-prev{ PADDING: 0px! important; WIDTH: 20px; background:url(../../images/page/bg.gif) no-repeat -251px -322px;}
+.page-cur,.page-break{PADDING: 3px 0 3px 0;}
+A.page-next,.page-end{ PADDING-RIGHT: 16px; background:url(../../images/page/bg.gif) no-repeat -210px -285px;}
+A:hover.page-next{ PADDING-RIGHT: 16px; background:url(../../images/page/bg.gif) no-repeat -210px -285px;}
+.page-cur {BORDER: #456d9c 1px solid; PADDING:0 5px 0 5px; FONT-WEIGHT:700; COLOR:#3366cc;BACKGROUND-COLOR: #e8f2ff}
+.page-skip { COLOR: #666; PADDING: 0px 3px 0 3px; margin-top:-1px;}
+.page-prev SPAN,.page-start SPAN,.page-mini .page-next SPAN,.page-mini .page-end SPAN,.page-skip BUTTON SPAN   {DISPLAY: none! important}
+
+
+/*文本框，下拉框样式*/
+.log-text{ background-color:#e8f9ff; border:1px solid #84a1bd; height:24px; width:180px; font-size:14px; font-weight:bold; padding-top:6px;}
+.log-btn{ border:none; background:url(../../images/page/btn_d.jpg) no-repeat; width:125px; height:32px; color:#1163ac; font-size:14px; font-weight:bold; padding-top:4px; cursor:pointer;}
+
+.tianj-text{ width:150px; height:15px; padding-top:5px; border:1px solid #6c92ad; padding-left:4px;}
+.tianj-textarea{border:1px solid #6c92ad; padding-left:4px; padding-top:4px;}
+
+
+/*表头样式*/
+.rblue ul{ height:25px; border-bottom:2px solid #5493cb; overflow:hidden;}
+.rblue ul li{ width:120px; text-align:center; color:#FFFFFF; font-weight:bold; background:url(../../images/page/bt_t.gif) no-repeat 0 0; height:19px; float:left; display:inline;  padding-right:16px; padding-top:6px;}
+.rorange ul{ height:25px; border-bottom:2px solid #f79e2a; overflow:hidden;}
+.rorange ul li{ width:120px; text-align:center; color:#FFFFFF; font-weight:bold; background:url(../../images/page/bt_t.gif) no-repeat 0 -29px; height:19px; float:left; display:inline;  padding-right:16px; padding-top:6px;}
+.rgreen ul{ height:25px; border-bottom:2px solid #71c155; overflow:hidden;}
+.rgreen ul li{ width:120px; text-align:center; color:#FFFFFF; font-weight:bold; background:url(../../images/page/bt_t.gif) no-repeat 0 -60px; height:19px; float:left; display:inline;  padding-right:16px; padding-top:6px;}
+
+/*表格样式*/
+.tab-h{ margin-top:3px; overflow:hidden; margin-left:1px; *margin-left:0px; line-height:200%;}
+.tab-h tr td{height:22px; border:1px solid #c5d2da; text-align:center; padding-top:6px; overflow:hidden;}
+.tab-h tr td.s-bg{ background:#e9f0f4;}
+ 
+.tab-s { margin-top:3px; overflow:hidden; margin-left:1px; *margin-left:0px;line-height:200%; }
+.tab-s tr td{height:24px; text-align:left; padding-top:1px; padding-left:10px; border:1px solid #c5d2da; overflow:hidden;}
+.tab-s tr td.s-bg{ background:#e9f0f4; text-align:right; }
+
+.tab-d{ background-color:#f6f9fc;  margin-top:3px; overflow:hidden;  padding:20px 0 30px 0; line-height:300%; border: #91afd3 1px solid;}
+.tab-d table{}
+.tab-d table tr{ height:28px; overflow:hidden;}
+
+/*button按钮*/
+.btn{
+border: #9BB9F5 1px solid;
+padding:2px 2px 2px 2px;
+FONT-SIZE: 12px;/*字号*/
+CURSOR: hand;/*光标类型*/
+COLOR: #000000;/*字色*/
+margin:0 auto;
+FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#9BB9F5);/*滤镜*/
+}
+

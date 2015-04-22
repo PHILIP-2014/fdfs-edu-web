@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>list</title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统设置 - 功能菜单 - 列表</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加功能菜单" onclick="this.form.action='add.jhtml?pid=${pid!}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.grid
+  cols=[{"label":"ID","name":"row.functionId","align":"center"},
+        {"label":"名称","name":"row.name","align":"center"},
+        {"label":"排列顺序","name":"row.priority","type":"input","inputName":"prioritys","align":"center"},
+        {"label":"菜单","name":"row.isMenu?string('是','<span style=\"color:red;\">否</span>')", "escape":false,"align":"center"},
+        {"label":"URL","name":"row.url"}
+       ]
+  keyId="id" rowIndex=false isPagination=false value=list
+  keepParams=[{"name":"pid"}]
+  normalOperate=[{"action":"/admin/core/function/edit","name":"<img src='"+base+"/images/admin/edit.gif'>"},
+                 {"action":"/admin/core/function/ajax/delete","type":"ajax","name":"<img src='"+base+"/images/admin/delete.gif'>","confirm":"您确定删除吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/function/ajax/delete","type":"ajax","name":"删除","confirm":"您确定删除吗？"}
+               ]
+  wholeOperate=[{"action":"/admin/core/function/ajax/priorityUpdate","name":"保存排列顺序"}
+               ]
+/>
+</div>
+</body>
+</html>

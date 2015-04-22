@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="浙江科技学院 | 派乐云工作平台">
+    <meta name="author" content="Parox">
+    <meta name="robots" content="none">
+    <title>杭州电子科技大学 | 派乐云工作平台</title>
+	<@p.PublicResource 
+        	css=['/style.css']
+        />
+  </head>
+
+  <body>
+	<div class="wrapper">
+		<div class="login-panel">
+			<div class="logo">
+				<img src="${baseAddr}/images/logo.png" />
+			</div>
+			<div class="login-panel-body">
+				<form role="form" action="javascript:;" method="post" data-remote="true" onsubmit="return false;">
+					<div class="form-group">
+						<input id="userName" name="userName" type="text" class="name" placeholder="用户名" required autofocus/>
+					</div>
+					<div class="form-group">
+					 	<input id="password" name="password" type="password" class="password" placeholder="密码" required/>
+					</div>
+					<div class="form-group p-msg hidden">
+						<p class="error-box"></p>
+					</div>
+					<div class="form-group">
+						<button class="btn-lg" type="submit">登录</button>
+					</div>
+					<div class="form-group checkbox col-md-12">
+                        <label class="pull-left padd-5 text-left">
+                          <input type="checkbox"  id="remember_me" name="remember" type="checkbox" value="1" class="pull-left select"> 自动登录
+                        </label>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+ 	<script>
+   	(function(){
+   		$('button.btn-lg').click(function(){
+   			var userName = $('#userName').val();
+   			var pwd = $('#password').val();
+   			var remember = $('#remember_me').prop("checked");
+   			AjaxPost(_CTX_PATH+'/login/validate.htm',{loginName:userName,password:pwd,remember:remember?"1":""},function callback(data){
+   				if(data.success){
+   					location.href=data.url;
+   				}else{
+   					$('.error-box').text(data.message);
+   					$('.p-msg').removeClass('hidden');
+   				}
+   			});
+   		});
+   	}());
+    </script>
+</body>
+</html>

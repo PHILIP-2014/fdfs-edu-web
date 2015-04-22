@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<script type="text/javascript">
+$(function() {
+	var status = ${status!};
+	if(status != null){
+		document.getElementById("status").value=status;
+	}
+})
+</script>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 空间管理 - 列表</div>
+	<div class="clear"></div> 
+</div>
+<form name="mainForm" id="mainForm" method="post" action="" class="rhead">
+组织ID：<input  type="text" name="orgId" size="8" value="${orgId!}"/>&nbsp;
+组织名称：<input  type="text" name="orgName"value="${orgName!}"/>&nbsp;
+空间ID：<input  type="text" name="spaceId" size="8" value="${spaceId!}"/>&nbsp;
+空间名称：<input  type="text" name="spaceName"value="${spaceName!}"/>&nbsp;
+状态:<select name="status" id="status">
+        <option value="">[请选择]</option>
+		<option value="0">正常</option>
+		<option value="1">删除</option>
+	</select>
+<input type="submit" value="搜索" />
+</form>
+
+<@p.grid
+  cols=[{"label":"ID","name":"row.spaceId"},
+        {"label":"空间名称","width":180, "name":"row.name"},
+        {"label":"所属组织","name":"(row.org.orgName+'('+row.orgId+')')!"},
+        {"label":"创建者","name":"(row.owner.realName+'('+row.ownerId+')')!"},
+        {"label":"空间用户数","name":"row.userNumber"},
+        <#--{"label":"空间类型","name":"(row.stype=1)?string('内部群组','外部网络')", "escape":false},-->
+        {"label":"开放状态","name":"(row.privacy=1)?string('开放的','私有的')", "escape":false},
+        <#--{"label":"是否可见","name":"(row.privacy=0 && display)?string('可见','')", "escape":false},-->
+        <#--{"label":"允许邀请","name":"(row.privacy=0 && allowInvite)?string('是','')", "escape":false},-->
+        {"label":"创建时间","name":"(row.createTime?string('yyyy-MM-dd hh:mm'))!"},
+        {"label":"空间状态","name":"(row.status=1)?string('<span style=\"color:red;\">删除</span>','<span style=\"color:green;\">正常</span>')", "escape":false}
+       ]
+  keyId="spaceId" keyId2="spaceId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/space/detail","name":"<img src='"+base+"/images/admin/show.gif'>"}
+                ]
+  keepParams=[
+			  {"name":"returnPage","value":"pageNo"},
+			  {"name":"orgId","encode":false},
+			  {"name":"orgName","encode":true},
+			  {"name":"spaceId","encode":false},
+			  {"name":"spaceName","encode":true},
+			  {"name":"status","encode":false}
+		     ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

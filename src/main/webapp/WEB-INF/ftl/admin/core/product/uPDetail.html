@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 运营管理 - 产品管理 - 订购详情</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+<@pj.form id="submitForm" labelWidth="10">
+<tr><td width="15%" class="pn-flabel pn-flabel-h">产品名称：</td>
+<td width="35%" class="pn-fcontent"><#if productId = 1>商业版2500(5人250G)<#elseif productId = 2>企业普通版4000(10人500G)<#else>企业高级版8000(25人1T)</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">存储量：</td>
+<td width="35%" class="pn-fcontent">${STORAGE/1024}G</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">用户数：</td>
+<td width="35%" class="pn-fcontent">${USER!}人</td>
+<td width="15%" class="pn-flabel pn-flabel-h">空间数：</td>
+<td width="35%" class="pn-fcontent">${SPACE!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">开通之间：</td>
+<td width="35%" class="pn-fcontent">${gmtStart?string("YYYY-MM-dd hh:mm:ss")}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">过期时间：</td>
+<td width="35%" class="pn-fcontent">${gmtEnd?string("YYYY-MM-dd hh:mm:ss")}</td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td>
+<td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h">组织名称：</td>
+<td width="35%" class="pn-fcontent">${orgName!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">组织ID：</td>
+<td width="35%" class="pn-fcontent">${order.orgId!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">用户实名：</td>
+<td width="35%" class="pn-fcontent">${user.realName!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">用户ID：</td>
+<td width="35%" class="pn-fcontent">${order.userId!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">所在部门：</td>
+<td width="35%" class="pn-fcontent">${user.email!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">联系方式：</td>
+<td width="35%" class="pn-fcontent">${user.mobile!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">支付方式：</td>
+<td width="35%" class="pn-fcontent"><#if order.paymentType = 0>网银支付<#else>线下支付</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">支付渠道：</td>
+<td width="35%" class="pn-fcontent"><#if order.paymentChannel = 101>支付宝<#else>其他</#if></td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">产品：</td>
+<td width="35%" class="pn-fcontent"><#if productId = 1>商业版2500(5人250G)<#elseif productId = 2>企业普通版4000(10人500G)<#else>企业高级版8000(25人1T)</#if></td>
+<td width="15%" class="pn-flabel pn-flabel-h">支付总额：</td>
+<td width="35%" class="pn-fcontent">${order.totalFee!}</td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td>
+<td width="15%" class="pn-flabel pn-flabel-h"></td>
+<td width="35%" class="pn-fcontent"></td><tr/>
+
+<tr><td width="15%" class="pn-flabel pn-flabel-h">姓名：</td>
+<td width="35%" class="pn-fcontent">${order.name!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">手机：</td>
+<td width="35%" class="pn-fcontent">${order.mobile!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">省份：</td>
+<td width="35%" class="pn-fcontent">${province!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">城市：</td>
+<td width="35%" class="pn-fcontent">${city!}</td><tr/>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">详细地址：</td>
+<td width="35%" class="pn-fcontent">${order.address!}</td>
+<td width="15%" class="pn-flabel pn-flabel-h">邮编：</td>
+<td width="35%" class="pn-fcontent">${order.zipcode!}</td><tr/>
+</@pj.form>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+body {
+	font: 12px/ 1.5 Tahoma, Helvetica, Arial, '宋体', sans-serif;
+}
+
+html,legend {
+	color: #404040;
+	background: #fff;
+}
+
+body,div,dl,dt,dd,ul,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,p,blockquote,th,td
+	{
+	margin: 0;
+	padding: 0;
+}
+
+/*会影响表格的单元格线*/
+/*
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+
+fieldset,img {
+	border: none;
+}
+
+caption,th {
+	text-align: left;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+}
+
+h1 {
+	font-size: 18px;
+}
+
+h2 {
+	font-size: 16px;
+}
+
+h3 {
+	font-size: 14px;
+}
+
+/*清除浮动,清除背景*/
+.clr{ clear:both;}
+.t-10{ margin-top:10px;}
+.t-15{ margin-top:15px;}
+.t-20{ margin-top:20px;}
+
+/*加粗*/
+strong{ font-weight:bold;} 
+
+/*文字，链接颜色*/
+.red{color:#ff0000;}
+.blue{color:#074977;}
+
+input,button,textarea,select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+input,button,textarea,select { *
+	font-size: 100%;
+}
+
+select,input,button,textarea {
+	font: 100% Tahoma, Helvetica, Arial, sans-serif;
+}
+
+table {
+	font-size: inherit;
+	font: 100%;
+}
+
+pre,code,kbd,samp,tt {
+	font-family: 'Courier New', Courier, monospace;
+}
+
+small {
+	font-size: 100%;
+}
+
+a {
+	color: #36c;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #f60;
+	text-decoration: underline;
+}
+
+hr {
+	color: #D1D7DC;
+	background-color: #D1D7DC;
+	border: none;
+	height: 1px;
+}
+
+.submit-loading{
+	background:url(../../images/common/loading.gif) no-repeat 62px 20px;
+}
+.page-loading{
+	background:url(../../images/common/loading-24-24.gif) no-repeat 60px 60px;
+}
+.hidden{
+	display:none;
+}

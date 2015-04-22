@@ -1,0 +1,153 @@
+<!--@hetao-2014/01/24--->
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="parox-注册-发送邮件">
+<meta name="author" content="Parox">
+
+<@p.PublicResource/>
+<title>parox-注册-发送邮件</title>
+</head>
+
+<body>
+	<@p.Include page='base_header.ftl' />
+	<div class="container clearfix">
+	
+		<!--login check-->
+		<form id="emailActiveForm" name="emailActiveForm" role="form" action="${base}/register/doSendActive.htm" method="post" class="form-inline">
+		<input type="hidden" name="emailMobile" value="${email}" />
+		<input type="hidden" name="resendFlag" value="true" />
+		<div class="center-block reg-block clearfix padd-30-b">
+			<!--logo-->
+			<img src="${imgRoot}/bg-reg-email.png" class="center-block reg-logo" />
+			<p class=" font15">
+				我们已经将账号激活邮件发送到您的邮箱 <br /> <a href="javascript:;"
+					class="btn_actemail" target="_blank">${email}</a>
+			</p>
+			<p class=" font12 colorGray-99">
+				请前往您的邮箱 <a href="javascript:;" class="btn_actemail" target="_blank">查看邮件</a>，对账号进行激活。若没有收到邮件，请检查您的垃圾邮件，或者让系统
+				<a href="javascript:;" id="resendBtn">重新发送邀请</a>激活邮件。
+			</p>
+		</div>
+		</form>
+		<!--login check-->
+		<script type="text/javascript" >
+			jQuery(document).ready(function(){
+				
+				//重新发送激活码
+				jQuery("#resendBtn").click(function(){
+					jQuery("#emailActiveForm").submit();
+				});
+				
+				//TODO 通过 resendFlag 确定是否要设置发送间隔限制
+			});
+			
+			var hash = {
+				'qq.com' : 'http://mail.qq.com',
+				'gmail.com' : 'http://mail.google.com',
+				'sina.com' : 'http://mail.sina.com.cn',
+				'163.com' : 'http://mail.163.com',
+				'126.com' : 'http://mail.126.com',
+				'yeah.net' : 'http://www.yeah.net/',
+				'sohu.com' : 'http://mail.sohu.com/',
+				'tom.com' : 'http://mail.tom.com/',
+				'sogou.com' : 'http://mail.sogou.com/',
+				'139.com' : 'http://mail.10086.cn/',
+				'hotmail.com' : 'http://www.hotmail.com',
+				'live.com' : 'http://login.live.com/',
+				'live.cn' : 'http://login.live.cn/',
+				'live.com.cn' : 'http://login.live.com.cn',
+				'189.com' : 'http://webmail16.189.cn/webmail/',
+				'yahoo.com.cn' : 'http://mail.cn.yahoo.com/',
+				'yahoo.cn' : 'http://mail.cn.yahoo.com/',
+				'eyou.com' : 'http://www.eyou.com/',
+				'21cn.com' : 'http://mail.21cn.com/',
+				'188.com' : 'http://www.188.com/',
+				'foxmail.coom' : 'http://www.foxmail.com',
+				'188.com' : 'http://www.188.com/',
+			};
+
+			$(function() {
+				$(".btn_actemail").each(function() {
+					var url = '${email}'.split('@')[1];
+					//for (var j in hash){
+					$(this).attr("href", hash[url]);
+					//}
+				});
+			});
+		</script>
+		<!--login check-->
+		<!--login check-->
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				//AJAX 认证验证码
+				
+				jQuery("#mobileActiveForm").submit(function(){
+					if(jQuery("#verifyCode").val()==""){
+						//TODO message 提示框
+						alert("请填写验证码");
+						return false;
+					}
+					
+					var data = {
+							mobile:jQuery("#mobile").val(),
+							activeCode:jQuery("#verifyCode").val()
+					}
+					
+					AjaxPost("${base}/register/ajax/activeMobile.htm", data, function(response){
+		    			// TODO 处理当前文件夹DOM，隐藏
+		    			if(response.success){
+		    				window.location.href="${base}/register/step0.htm?mobile="+jQuery("#mobile").val();
+		    			}else{
+		    				alert("验证码填写错误");
+		    			}
+		    		});
+					return false;
+				});
+				
+				var time = 6;
+				setInterval(function(){
+					if(time<=0){
+						jQuery("#resendBtn").val("重新发送");
+						jQuery("#resendBtn").attr("disabled",false);
+						return false;
+					}
+					time=time-1;
+					jQuery("#resendBtn").val("还剩"+time+"秒");
+				}, 1000);
+				
+				jQuery("#resendBtn").click(function(){
+					var data = {target:jQuery("#mobile").val()};
+					AjaxPost("${base}/register/ajax/resendActive.htm", data, function(response){
+		    			// TODO 处理当前文件夹DOM，隐藏
+		    			if(response.success){
+		    				time=60;
+		    				jQuery("#resendBtn").attr("disabled",true);
+		    				jQuery("#resendBtn").val("还剩"+time+"秒");
+		    			}
+		    		});
+				});
+			});
+		</script>
+	</div>
+	<!--/container -->
+
+
+	<!--footer-->
+	<footer class="panel-footer footer bd-un-style">
+		<div class="col-lg-12">
+			<p class="text-center colorGray-99">
+				<a href="#" target="_blank" class="lnk-gray">关于Parox</a> <a href="#"
+					target="_blank" class="lnk-gray">· 条款</a> <a href="#"
+					target="_blank" class="lnk-gray">· 隐私政策</a> <span>Copyrigt
+					&copy; 2014 Parox.All Reserved</span>
+			</p>
+	</footer>
+	<!--/footer-->
+
+</body>
+</html>

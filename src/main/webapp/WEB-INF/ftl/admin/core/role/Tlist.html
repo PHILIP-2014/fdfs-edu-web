@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<@p.Include page="admin.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统管理 - 功能权限 - 系统角色 - 列表</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="添加角色" onclick="this.form.action='Tadd.jhtml';"/>
+	</form>
+	<div class="clear"></div> 
+</div>
+
+<@p.grid
+  cols=[{"label":"ID","name":"row.roleId"},
+        {"label":"角色名称","name":"row.name"},
+        {"label":"角色描述","name":"row.description"}
+       ]
+  keyId="roleId" keyId2="roleId" rowIndex=false
+  normalOperate=[{"action":"/admin/core/role/Tedit","name":"<img src='"+base+"/images/admin/edit.gif'>"},
+                 {"action":"/admin/core/role/Tdelete","type":"ajax","name":"<img src='"+base+"/images/admin/delete.gif'>","confirm":"您确定删除吗？"}
+                ]
+  batchOperate=[{"action":"/admin/core/role/Tdelete","type":"ajax","name":"删除","confirm":"您确定删除吗？"}
+               ]
+/>
+<@p.Include page="alert_message.ftl"/>
+</div>
+</body>
+</html>

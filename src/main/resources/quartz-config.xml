@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- 要调用的工作类 -->
+	
+	<!-- 定义调用对象和调用对象的方法 -->
+	<bean id="indexJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="indexService"/>
+        </property>
+        <property name="targetMethod">
+            <value>index</value>
+        </property>
+    </bean>
+	<bean id="onlineJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <property name="targetObject">
+	        <ref bean="onlineUserService"/>
+	    </property>
+	    <property name="targetMethod">
+	        <value>clearTimeoutUsers</value>
+	    </property>
+	</bean>
+	<bean id="clearExpiredActivesJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	    <property name="targetObject">
+	        <ref bean="userActiveService"/>
+	    </property>
+	    <property name="targetMethod">
+	        <value>deleteExpiredActives</value>
+	    </property>
+	</bean>
+	
+	<bean id="weekScoreResetJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="userAuxiliaryService"/>
+        </property>
+        <property name="targetMethod">
+            <value>resetWeekScore</value>
+        </property>
+    </bean>
+    	<bean id="expirationTimeJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="downloadCompressService"/>
+        </property>
+        <property name="targetMethod">
+            <value>getExpirationTime</value>
+        </property>
+    </bean>
+	
+	<!-- 定义触发时间 -->
+	<bean id="indexJobTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="indexJobTask"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0/5 * * * ?</value>
+        </property>
+    </bean>
+	<bean id="onlineJobTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    <property name="jobDetail">
+	        <ref bean="onlineJobTask"/>
+	    </property>
+	    <property name="cronExpression">
+	        <value>0/30 * * * * ?</value>
+	    </property>
+	</bean>
+	<bean id="clearExpiredActivesJobTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    <property name="jobDetail">
+	        <ref bean="clearExpiredActivesJobTask"/>
+	    </property>
+	    <property name="cronExpression">
+	    	<!-- 每小时执行1次 -->
+	        <value>0 0 * * * ?</value>
+	    </property>
+	</bean>
+	<bean id="weekScoreResetJobTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="weekScoreResetJobTask"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 1 * ?</value>
+        </property>
+    </bean>
+		<bean id="expirationTimeJobTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="expirationTimeJobTask"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 1 * ?</value>
+        </property>
+    </bean>
+	
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	        <list>
+	        	<ref bean="indexJobTime"/>
+	        	<ref bean="onlineJobTime"/>
+	        	<ref bean="clearExpiredActivesJobTime"/>
+	        	<ref bean="weekScoreResetJobTime"/>
+	        	<ref bean="expirationTimeJobTime"/>
+	        </list>
+	    </property>
+	</bean>
+    <!-- [秒 分 小时 日期 月份 星期 年(可为空)] -->
+    
+</beans>

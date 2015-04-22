@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+<title></title>
+<@mh.Include page="admin.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate({
+		submitHandler:function(form){
+			AjaxPostForm('Tsave.htm',form.id);
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 系统设置 - 系统用户管理 - 添加</div>
+	<form class="ropt">
+		<input type="submit" value="返回列表" onclick="this.form.action='Tlist.jhtml';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="submitForm" labelWidth="15" action="Tsave">
+<@p.text colspan="1" width="50" label="登录名" name="bean.loginName" id="username" rname="username" required="true" 
+	vld="{required:true,rangelength:[2,20],username:true,remote:{url:'TcheckUsername.jhtml',data:{username:function(){return $('#username').val();}}},messages:{remote:'用户名已存在！'}}"/>
+<@p.text colspan="1" width="50" label="真实姓名" name="bean.realName" maxlength="50"/><@p.tr/>
+<@p.password colspan="1" width="50" label="密码" id="password" name="bean.password" required="true" class="required" maxlength="32"/>
+<@p.password colspan="1" width="50" label="确认密码" equalTo="#password" required="true"/><@p.tr/>
+<@p.select colspan="1" width="50" label="部门" name="bean.depart.id" list=departList listKey="id" listValue="selectTree" help="请选择所属部门"/>
+<@p.radio colspan="1" width="50" label="用户类型" name="bean.type" list={"1":"淘宝天下","2":"合作伙伴"} value="1"/><@p.tr/>
+<@p.text colspan="1" width="50" label="办公室房号" name="bean.office" maxlength="100"/>
+<@p.text colspan="1" width="50" label="办公电话" name="bean.tel" maxlength="100"/><@p.tr/>
+<@p.text colspan="1" width="50" label="电子邮箱" name="bean.email" id="email" rname="email" rvalue=email maxlength="100" 
+	required="true" vld="{required:true,email:true,remote:{url:'TcheckEmail.jhtml',data:{email:function(){return $('#email').val();}}}, messages:{remote:'email已经被使用！'}}"/>
+<@p.text colspan="1" width="50" label="邮编" name="bean.zip" maxlength="20"/><@p.tr/>
+<@p.text colspan="1" width="50" label="地址" name="bean.address" size="45" maxlength="250"/>
+<@p.text colspan="1" width="50" label="手机" name="bean.mobile" maxlength="250"/><@p.tr/>
+<@p.radio colspan="1" width="50" label="性别" name="bean.gender" list={"true":"男","false":"女"}/>
+<@p.radio colspan="1" width="50" label="禁用" name="bean.disabled" list={"true":"是","false":"否"} value="false"/><@p.tr/>
+<@p.td colspan="2"><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>
