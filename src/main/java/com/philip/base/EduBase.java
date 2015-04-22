@@ -25,7 +25,7 @@ public class EduBase extends BaseController {
 	
 	Logger log = Logger.getLogger(BaseController.class);
 	
-	public static final String AES_KEY_ZUST = "weijianzhixiang7";
+	public static final String AES_KEY = "weijianzhixiang7";
 
 	/**
 	 * 指定记录数的cookie名称

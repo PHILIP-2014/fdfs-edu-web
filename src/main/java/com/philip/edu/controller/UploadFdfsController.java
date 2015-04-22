@@ -97,7 +97,7 @@ public class UploadFdfsController extends EduBase {
 
 	public static void main(String[] args) throws Exception {
 		String sign = "eec7d690cc66ca94c67cf77f69fdb37701326f1b3a0124879cc4158c8e75309d9c87feffe81085121eaff39021aa1c24637baee4e6d07a45cc470585986d01281c8a8e11648f1c83536f5c25400027d41a931e224e4774a18cb9d07649465bac984fc842f9928804ee2144456e77b48e613c6e8fa3e9e0aa2c7afd7ea17ee364ffca960baaaecee84b0b0fe4d243bad0797c2369276711124a829059c311d0eba40fee86c5cc3ebc34b776f38a1738fc";
-		String jsonString = AESUtil.Decrypt(sign, AES_KEY_ZUST);
+		String jsonString = AESUtil.Decrypt(sign, AES_KEY);
 		System.out.println(jsonString);
 		JSONObject jObj = JSON.parseObject(jsonString);
 		String displayName = jObj.getString("displayName");

@@ -33,7 +33,7 @@ public class DwloadFdfsController extends EduBase  {
 		String type = null;
 		String contentType = null;
 		try {
-			String jsonString = AESUtil.Decrypt(sign, AES_KEY_ZUST);
+			String jsonString = AESUtil.Decrypt(sign, AES_KEY);
 			JSONObject jObj = JSON.parseObject(jsonString);
 			displayName = jObj.getString("displayName");
 			path = jObj.getString("path");
