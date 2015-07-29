@@ -1,10 +1,5 @@
 package com.philip.core.utils;
 
-import com.daoman.core.util.AESUtil;
-import com.daoman.core.util.ConfigProperties;
-import com.philip.base.EduBase;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Hashtable;
@@ -18,6 +13,11 @@ import javax.naming.directory.InitialDirContext;
 
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
+
+import com.daoman.core.util.AESUtil;
+import com.daoman.core.util.ConfigProperties;
+import com.philip.base.EduBase;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 public class LdapHelper extends EduBase {
 	private static DirContext ctx;
